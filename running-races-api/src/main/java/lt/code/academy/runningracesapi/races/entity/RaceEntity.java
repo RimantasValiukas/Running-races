@@ -45,8 +45,7 @@ public class RaceEntity {
                 race.getAddress(),
                 race.getDescription(),
                 race.getOrganizer(),
-                race.getDateTime(),
-                race.getDistances()
+                race.getDateTime(),                race.getDistances()
         );
     }
 
