@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lt.code.academy.runningracesapi.races.dto.Race;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -32,7 +33,7 @@ public class RaceEntity {
     @Column(nullable = false)
     private String organizer;
     @Column(nullable = false)
-    private LocalDateTime dateTime;
+    private Timestamp dateTime;
     @ElementCollection
     @CollectionTable(name = "distances",joinColumns = @JoinColumn(name = "raceId"))
     @Column(name = "distance", nullable = false)
@@ -45,7 +46,8 @@ public class RaceEntity {
                 race.getAddress(),
                 race.getDescription(),
                 race.getOrganizer(),
-                race.getDateTime(),                race.getDistances()
+                race.getDateTime(),
+                race.getDistances()
         );
     }
 

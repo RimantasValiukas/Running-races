@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lt.code.academy.runningracesapi.races.entity.RaceEntity;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -21,7 +22,7 @@ public class Race {
     private String address;
     private String description;
     private String organizer;
-    private LocalDateTime dateTime;
+    private Timestamp dateTime;
     private List<Integer> distances;
 
     public static Race convert(RaceEntity raceEntity) {
