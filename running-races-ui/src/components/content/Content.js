@@ -1,7 +1,7 @@
 import Container from "@mui/material/Container";
 import {Route, Routes} from "react-router-dom";
 import Race from "../forms/Race";
-import Races from "./Races";
+import Races from "../page/Races";
 
 const Content = () => {
 

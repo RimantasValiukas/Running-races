@@ -1,10 +1,10 @@
 import {Button, Card, CardActions, CardContent, CardMedia, CircularProgress, Grid, Typography} from "@mui/material";
 import {useEffect, useState} from "react";
 import {getRaces} from "../api/raceApi";
+import {format, parseISO} from "date-fns";
 
 const Races = () => {
 
-    const cards = [1, 2, 3, 4, 5];
     const [loading, setLoading] = useState(true);
     const [races, setRaces] = useState([]);
 
@@ -13,7 +13,7 @@ const Races = () => {
             .then(({data}) => setRaces(data))
             .catch((error) => console.log('error', error))
             .finally(() => setLoading(false));
-    });
+    }, []);
 
     return (
         <>
@@ -38,7 +38,10 @@ const Races = () => {
                                             {race.name}
                                         </Typography>
                                         <Typography>
-                                            {race.description}
+                                            {format(parseISO(race.dateTime), 'yyyy-MM-dd hh:mm')}
+                                        </Typography>
+                                        <Typography>
+                                            {race.address}
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
