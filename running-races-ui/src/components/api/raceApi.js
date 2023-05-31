@@ -2,8 +2,12 @@ import HTTP from "./index";
 
 const createRace = (race) => HTTP.post('/races', race);
 const getRaces = () => HTTP.get("/races");
+const getRaceById = (raceId) => HTTP.get(`/races/${raceId}`);
+const updateRace = (race, raceId) => HTTP.put(`/races/${raceId}`, race);
 
 export {
     createRace,
-    getRaces
+    getRaces,
+    getRaceById,
+    updateRace
 }

@@ -2,6 +2,7 @@ import {Button, Card, CardActions, CardContent, CardMedia, CircularProgress, Gri
 import {useEffect, useState} from "react";
 import {getRaces} from "../api/raceApi";
 import {format, parseISO} from "date-fns";
+import {NavLink} from "react-router-dom";
 
 const Races = () => {
 
@@ -45,8 +46,12 @@ const Races = () => {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button size="small">View</Button>
-                                        <Button size="small">Edit</Button>
+                                        <Button size="small"
+                                                to={`/races/${race.id}`}
+                                                component={NavLink}>View</Button>
+                                        <Button size="small"
+                                                to={`/races/${race.id}/update`}
+                                                component={NavLink}>Edit</Button>
                                     </CardActions>
                                 </Card>
                             </Grid>
