@@ -28,16 +28,18 @@ public class RaceEntity {
     private String name;
     @Column(nullable = false)
     private String address;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 2000)
     private String description;
     @Column(nullable = false)
     private String organizer;
+    @Column(nullable = false)
+    private String imageURL;
     @Column(nullable = false)
     private Timestamp dateTime;
     @ElementCollection
     @CollectionTable(name = "distances",joinColumns = @JoinColumn(name = "raceId"))
     @Column(name = "distance", nullable = false)
-    private List<Integer> distances;
+    private List<Double> distances;
 
     public static RaceEntity convert(Race race) {
         return new RaceEntity(
@@ -46,6 +48,7 @@ public class RaceEntity {
                 race.getAddress(),
                 race.getDescription(),
                 race.getOrganizer(),
+                race.getImageURL(),
                 race.getDateTime(),
                 race.getDistances()
         );

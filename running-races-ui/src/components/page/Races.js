@@ -1,4 +1,14 @@
-import {Button, Card, CardActions, CardContent, CardMedia, CircularProgress, Grid, Typography} from "@mui/material";
+import {
+    Alert,
+    Button,
+    Card,
+    CardActions,
+    CardContent,
+    CardMedia,
+    CircularProgress,
+    Grid,
+    Typography
+} from "@mui/material";
 import {useEffect, useState} from "react";
 import {getRaces} from "../api/raceApi";
 import {format, parseISO} from "date-fns";
@@ -8,16 +18,24 @@ const Races = () => {
 
     const [loading, setLoading] = useState(true);
     const [races, setRaces] = useState([]);
+    const [message, setMessage] = useState({isVisible: false});
 
     useEffect(() => {
         getRaces()
-            .then(({data}) => setRaces(data))
+            .then(({data}) => {
+                if (data.length > 0) {
+                    setRaces(data);
+                } else {
+                    setMessage({isVisible: true, message: 'There is no scheduled race', severity:'info'})
+                }
+            })
             .catch((error) => console.log('error', error))
             .finally(() => setLoading(false));
     }, []);
 
     return (
         <>
+            {message.isVisible && <Alert severity={message.severity}>{message.message}</Alert>}
             {
                 loading ? <CircularProgress/> :
                     <Grid container spacing={4} sx={{marginTop: '20px'}}>
@@ -32,7 +50,7 @@ const Races = () => {
                                             // 16:9
                                             pt: '56.25%',
                                         }}
-                                        image="https://images.pexels.com/photos/1072705/pexels-photo-1072705.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                                        image={race.imageURL}
                                     />
                                     <CardContent sx={{flexGrow: 1}}>
                                         <Typography gutterBottom variant="h5" component="h2">

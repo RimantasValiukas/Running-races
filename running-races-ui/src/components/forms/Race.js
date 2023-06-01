@@ -35,6 +35,7 @@ const Race = () => {
         address: '',
         description: '',
         organizer: '',
+        imageURL: '',
         dateTime: null,
         distances: []
     });
@@ -119,6 +120,9 @@ const Race = () => {
                                 <FormInputs error={props.touched.organizer && !!props.errors.organizer}
                                             name="organizer"
                                             label="Race organizer"/>
+                                <FormInputs error={props.touched.imageURL && !!props.errors.imageURL}
+                                            name="imageURL"
+                                            label="Image URL"/>
 
                                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                                     <DateTimePicker
@@ -138,7 +142,7 @@ const Race = () => {
                                                     key={index}
                                                     name={`distances[${index}]`}
                                                     label={`Distance (km)`}
-                                                    type="number"
+                                                    type="numeric"
                                                     error={props.touched.distances && !!props.errors.distances?.[index]}
                                                 />
                                             ))}

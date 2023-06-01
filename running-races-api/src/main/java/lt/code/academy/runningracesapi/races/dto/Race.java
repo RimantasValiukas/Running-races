@@ -22,8 +22,9 @@ public class Race {
     private String address;
     private String description;
     private String organizer;
+    private String imageURL;
     private Timestamp dateTime;
-    private List<Integer> distances;
+    private List<Double> distances;
 
     public static Race convert(RaceEntity raceEntity) {
         return new Race(
@@ -32,6 +33,7 @@ public class Race {
                 raceEntity.getAddress(),
                 raceEntity.getDescription(),
                 raceEntity.getOrganizer(),
+                raceEntity.getImageURL(),
                 raceEntity.getDateTime(),
                 raceEntity.getDistances()
         );
