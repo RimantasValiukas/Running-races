@@ -7,7 +7,6 @@ import lombok.Setter;
 import lt.code.academy.runningracesapi.races.entity.RaceEntity;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 

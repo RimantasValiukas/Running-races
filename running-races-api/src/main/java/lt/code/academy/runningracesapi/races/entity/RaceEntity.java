@@ -8,7 +8,7 @@ import lombok.Setter;
 import lt.code.academy.runningracesapi.races.dto.Race;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -40,6 +40,8 @@ public class RaceEntity {
     @CollectionTable(name = "distances",joinColumns = @JoinColumn(name = "raceId"))
     @Column(name = "distance", nullable = false)
     private List<Double> distances;
+    @OneToMany(mappedBy = "raceEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CompetitorEntity> competitors;
 
     public static RaceEntity convert(Race race) {
         return new RaceEntity(
@@ -50,7 +52,8 @@ public class RaceEntity {
                 race.getOrganizer(),
                 race.getImageURL(),
                 race.getDateTime(),
-                race.getDistances()
+                race.getDistances(),
+                new ArrayList<>()
         );
     }
 
