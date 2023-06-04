@@ -5,6 +5,7 @@ import {Alert, Button, CircularProgress, Grid, ImageListItem, Paper, styled, Typ
 import Container from "@mui/material/Container";
 import {format, parseISO} from "date-fns";
 import DeleteRace from "../DeleteRace";
+import Competitor from "../forms/Competitor";
 
 const Item = styled(Paper)(({theme}) => ({
     ...theme.typography.body2,
@@ -23,7 +24,7 @@ const RaceDetail = () => {
     useEffect(() => {
         getRaceById(raceId)
             .then(({data}) => setRace(data))
-            .catch((error) => setMessage({isVisible: true, message: 'Race cannot be opened', severity:'error'}))
+            .catch((error) => setMessage({isVisible: true, message: 'Race cannot be opened', severity: 'error'}))
             .finally(() => setLoading(false));
     })
 
@@ -51,9 +52,10 @@ const RaceDetail = () => {
                                     <Grid item xs={10}>{race.address}</Grid>
                                     <Grid item xs={2}>Description:</Grid>
                                     <Grid item xs={10}>{race.description}</Grid>
-                                    <Grid item xs={12}> <Button size="small"
-                                                                to={`#`}
-                                                                component={NavLink}>Register</Button>
+                                    <Grid item xs={12}>
+                                        <Button size="small"
+                                                to={`/competitors/${race.id}/create`}
+                                                component={NavLink}>Register</Button>
                                         <Button size="small"
                                                 to={`/races/${race.id}/update`}
                                                 component={NavLink}>Edit</Button>
@@ -63,7 +65,6 @@ const RaceDetail = () => {
                             </Grid>
                         </Grid>
                     </Container>
-
             }
         </>
     );
