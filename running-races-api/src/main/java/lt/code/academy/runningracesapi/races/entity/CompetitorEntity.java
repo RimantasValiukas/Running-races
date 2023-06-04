@@ -18,8 +18,10 @@ import java.util.UUID;
 public class CompetitorEntity {
     @Id
     @GeneratedValue
-    @Column(columnDefinition = "uuid", updatable = false)
+    @Column(updatable = false)
     private UUID competitorId;
+    @Column(insertable = false, updatable = false)
+    private UUID raceId;
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
@@ -41,6 +43,7 @@ public class CompetitorEntity {
     public static CompetitorEntity convert(Competitor competitor) {
         return new CompetitorEntity(
                 competitor.getId(),
+                competitor.getRaceId(),
                 competitor.getName(),
                 competitor.getSurname(),
                 competitor.getDateOfBirth(),

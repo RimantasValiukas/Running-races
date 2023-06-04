@@ -15,6 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Competitor {
     private UUID id;
+    private UUID raceId;
     private String name;
     private String surname;
     private Timestamp dateOfBirth;
@@ -26,6 +27,7 @@ public class Competitor {
     public static Competitor convert(CompetitorEntity entity) {
         return new Competitor(
                 entity.getCompetitorId(),
+                entity.getRaceId(),
                 entity.getName(),
                 entity.getSurname(),
                 entity.getDateOfBirth(),

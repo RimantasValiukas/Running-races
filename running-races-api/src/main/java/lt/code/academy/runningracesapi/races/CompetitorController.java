@@ -31,7 +31,7 @@ public class CompetitorController {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public void createCompetitor(@RequestBody Competitor competitor) {
+    public void createCompetitor(@RequestBody Competitor competitor) {;
         competitorService.saveCompetitor(competitor);
     }
 

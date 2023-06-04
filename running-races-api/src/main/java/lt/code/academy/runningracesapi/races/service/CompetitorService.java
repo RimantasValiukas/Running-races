@@ -4,6 +4,7 @@ import lt.code.academy.runningracesapi.races.dto.Competitor;
 import lt.code.academy.runningracesapi.races.entity.CompetitorEntity;
 import lt.code.academy.runningracesapi.races.exception.CompetitorNotExistRuntimeException;
 import lt.code.academy.runningracesapi.races.repository.CompetitorRepository;
+import lt.code.academy.runningracesapi.races.repository.RaceRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,13 +13,17 @@ import java.util.UUID;
 @Service
 public class CompetitorService {
     private final CompetitorRepository competitorRepository;
+    private final RaceRepository raceRepository;
 
-    public CompetitorService(CompetitorRepository competitorRepository) {
+    public CompetitorService(CompetitorRepository competitorRepository, RaceRepository raceRepository) {
         this.competitorRepository = competitorRepository;
+        this.raceRepository = raceRepository;
     }
 
     public void saveCompetitor(Competitor competitor) {
-        competitorRepository.save(CompetitorEntity.convert(competitor));
+        CompetitorEntity competitorEntity = CompetitorEntity.convert(competitor);
+        competitorEntity.setRaceEntity(raceRepository.getReferenceById(competitor.getRaceId()));
+        competitorRepository.save(competitorEntity);
     }
 
     public Competitor getCompetitor(UUID competitorId) {
