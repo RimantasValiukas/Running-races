@@ -1,6 +1,6 @@
 import {createRace, getRaceById, updateRace} from "../api/raceApi";
-import {FieldArray, Form, Formik} from "formik";
-import {Alert, Button, CircularProgress, Stack} from "@mui/material";
+import {ErrorMessage, FieldArray, Form, Formik} from "formik";
+import {Alert, Button, CircularProgress, FormHelperText, Stack} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import FormInputs from "./FormInputs";
 import Container from "@mui/material/Container";
@@ -131,7 +131,9 @@ const Race = () => {
                                         onChange={(value) => props.setFieldValue("dateTime", value)}
                                         format="yyyy-MM-dd HH:mm:ss"
                                         onBlur={props.handleBlur("dateTime")}
+                                        error={props.touched.dateTime && !!props.errors.dateTime}
                                     />
+                                    <ErrorMessage name="dateTime" component={FormHelperText}/>
                                 </LocalizationProvider>
 
                                 <FieldArray name="distances">
@@ -142,7 +144,7 @@ const Race = () => {
                                                     key={index}
                                                     name={`distances[${index}]`}
                                                     label={`Distance (km)`}
-                                                    type="numeric"
+                                                    type="number"
                                                     error={props.touched.distances && !!props.errors.distances?.[index]}
                                                 />
                                             ))}
