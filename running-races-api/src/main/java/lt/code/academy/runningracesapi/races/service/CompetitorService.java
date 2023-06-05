@@ -40,6 +40,14 @@ public class CompetitorService {
                 .toList();
     }
 
+    public List<Competitor> getCompetitorsByRaceId(UUID raceId) {
+       return competitorRepository
+               .findCompetitorEntitiesByRaceId(raceId)
+               .stream()
+               .map(Competitor::convert)
+               .toList();
+    }
+
     public void deleteCompetitor(UUID competitorId) {
         competitorRepository.deleteById(competitorId);
     }
