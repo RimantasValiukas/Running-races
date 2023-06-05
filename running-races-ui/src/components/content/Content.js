@@ -4,6 +4,7 @@ import Race from "../forms/Race";
 import Races from "../page/Races";
 import RaceDetail from "../page/RaceDetail";
 import Competitor from "../forms/Competitor";
+import Competitors from "../page/Competitors";
 
 const Content = () => {
 
@@ -15,6 +16,7 @@ const Content = () => {
                 <Route path="/races/:raceId" element={<RaceDetail/>}/>
                 <Route path="/races/:raceId/update" element={<Race key="update"/>}/>
                 <Route path="/competitors/:raceId/create" element={<Competitor/>}/>
+                <Route path="/competitors/:raceId" element={<Competitors/>}/>
             </Routes>
         </Container>
     );

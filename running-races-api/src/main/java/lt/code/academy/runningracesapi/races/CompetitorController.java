@@ -24,10 +24,15 @@ public class CompetitorController {
         return competitorService.getAllCompetitors();
     }
 
-    @GetMapping(value = "/{competitorId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Competitor getCompetitorById(@PathVariable UUID competitorId) {
-        return competitorService.getCompetitor(competitorId);
+    @GetMapping(value = "/{raceId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Competitor> getCompetitorsByRaceId(@PathVariable UUID raceId) {
+        return competitorService.getCompetitorsByRaceId(raceId);
     }
+
+//    @GetMapping(value = "/{competitorId}", produces = MediaType.APPLICATION_JSON_VALUE)
+//    public Competitor getCompetitorById(@PathVariable UUID competitorId) {
+//        return competitorService.getCompetitor(competitorId);
+//    }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)

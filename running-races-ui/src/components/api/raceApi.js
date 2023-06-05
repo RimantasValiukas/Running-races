@@ -8,7 +8,7 @@ const updateRace = (race, raceId) => HTTP.put(`/races/${raceId}`, race);
 const deleteRace = (raceId) => HTTP.delete(`/races/${raceId}`);
 const createCompetitor = (competitor) => HTTP.post('/competitors', competitor);
 const getCompetitors = () => HTTP.get('/competitors');
-
+const getCompetitorsByRaceId = (raceId) => HTTP.get(`/competitors/${raceId}`)
 export {
     createRace,
     getRaces,
@@ -16,5 +16,6 @@ export {
     updateRace,
     deleteRace,
     createCompetitor,
-    getCompetitors
+    getCompetitors,
+    getCompetitorsByRaceId
 }

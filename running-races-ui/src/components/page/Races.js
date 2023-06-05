@@ -24,7 +24,12 @@ const Races = () => {
         getRaces()
             .then(({data}) => {
                 if (data.length > 0) {
-                    setRaces(data);
+                    const sortedRaces = data.sort((a, b) => {
+                        const dateA = parseISO(a.dateTime);
+                        const dateB = parseISO(b.dateTime);
+                        return dateA - dateB;
+                    });
+                    setRaces(sortedRaces);
                 } else {
                     setMessage({isVisible: true, message: 'There is no scheduled race', severity:'info'})
                 }
@@ -40,7 +45,7 @@ const Races = () => {
                 loading ? <CircularProgress/> :
                     <Grid container spacing={4} sx={{marginTop: '20px'}}>
                         {races.map((race) => (
-                            <Grid item key={race} xs={12} sm={6} md={4}>
+                            <Grid item key={race.name} xs={12} sm={6} md={4}>
                                 <Card
                                     sx={{height: '100%', display: 'flex', flexDirection: 'column'}}
                                 >

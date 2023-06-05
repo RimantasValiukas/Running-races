@@ -57,6 +57,9 @@ const RaceDetail = () => {
                                                 to={`/competitors/${race.id}/create`}
                                                 component={NavLink}>Register</Button>
                                         <Button size="small"
+                                                to={`/competitors/${race.id}`}
+                                                component={NavLink}>Competitors</Button>
+                                        <Button size="small"
                                                 to={`/races/${race.id}/update`}
                                                 component={NavLink}>Edit</Button>
                                         <DeleteRace raceId={raceId}/>

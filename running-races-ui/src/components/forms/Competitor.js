@@ -25,8 +25,8 @@ const competitorValidationScheme = Yup.object().shape(
         name: Yup.string().required('Name is required'),
         surname: Yup.string().required('Surname is required'),
         dateOfBirth: Yup.date().required('Date of birth is required'),
-        city: Yup.string().required('City is required')
-        // distance: Yup.number().required('Distance is required')
+        city: Yup.string().required('City is required'),
+        distance: Yup.number().required('Distance is required')
     });
 
 const Competitor = () => {
@@ -35,13 +35,6 @@ const Competitor = () => {
     const {raceId} = useParams();
     const [distances, setDistances] = useState([]);
     const [loading, setLoading] = useState(true);
-    const onDistanceSelect = (event) => {
-        const selectedDistance = event.target.value;
-        setCompetitor((competitor) => ({
-            ...competitor,
-            distance: selectedDistance
-        }));
-    }
     const [competitor, setCompetitor] = useState({
         name: '',
         surname: '',
@@ -53,7 +46,6 @@ const Competitor = () => {
     });
 
     useEffect(() => {
-        console.log(raceId);
         getRaceById(raceId)
             .then(({data}) => setDistances(data.distances))
             .catch((error) => {
@@ -67,12 +59,10 @@ const Competitor = () => {
         const timestamp = new Date(values.dateOfBirth).getTime();
         const updatedValues = {
             ...values,
-            distance: competitor.distance,
             dateOfBirth: timestamp,
             raceId: raceId,
         };
 
-        console.log(updatedValues);
         createCompetitor(updatedValues)
             .then(() => {
                 helper.resetForm();
@@ -113,7 +103,9 @@ const Competitor = () => {
                                             onChange={(value) => props.setFieldValue("dateOfBirth", value)}
                                             format="yyyy-MM-dd"
                                             onBlur={props.handleBlur("dateOfBirth")}
+                                            error={props.touched.dateOfBirth && !!props.errors.dateOfBirth}
                                         />
+                                        <ErrorMessage name="dateOfBirth" component={FormHelperText}/>
                                     </LocalizationProvider>
 
                                     <FormInputs error={props.touched.city && !!props.errors.city}
@@ -127,10 +119,9 @@ const Competitor = () => {
                                         <InputLabel>Distance</InputLabel>
                                         <Field
                                             as={Select}
-                                            value={competitor.distance}
+                                            value={props.values.distance}
                                             id="distance"
                                             name="distance"
-                                            onChange={onDistanceSelect}
                                             error={props.touched.distance && !!props.errors.distance}>
                                             {
                                                 distances.map((d) => (
