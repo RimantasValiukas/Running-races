@@ -13,12 +13,14 @@ import {useEffect, useState} from "react";
 import {getRaces} from "../api/raceApi";
 import {format, parseISO} from "date-fns";
 import {NavLink} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 const Races = () => {
 
     const [loading, setLoading] = useState(true);
     const [races, setRaces] = useState([]);
     const [message, setMessage] = useState({isVisible: false});
+    const {t} = useTranslation('races');
 
     useEffect(() => {
         getRaces()
@@ -43,11 +45,11 @@ const Races = () => {
             {message.isVisible && <Alert severity={message.severity}>{message.message}</Alert>}
             {
                 loading ? <CircularProgress/> :
-                    <Grid container spacing={4} sx={{marginTop: '20px'}}>
+                    <Grid container spacing={4} sx={{marginTop: '60px'}}>
                         {races.map((race) => (
                             <Grid item key={race.name} xs={12} sm={6} md={4}>
                                 <Card
-                                    sx={{height: '100%', display: 'flex', flexDirection: 'column'}}
+                                    sx={{height: '100%', display: 'flex', flexDirection: 'column', backgroundColor: '#DBE2EF'}}
                                 >
                                     <CardMedia
                                         component="div"
@@ -56,7 +58,7 @@ const Races = () => {
                                         }}
                                         image={race.imageURL}
                                     />
-                                    <CardContent sx={{flexGrow: 1}}>
+                                    <CardContent sx={{flexGrow: 1, color: '#112D4E'}}>
                                         <Typography gutterBottom variant="h5" component="h2">
                                             {race.name}
                                         </Typography>
@@ -70,10 +72,12 @@ const Races = () => {
                                     <CardActions>
                                         <Button size="small"
                                                 to={`/races/${race.id}`}
-                                                component={NavLink}>View</Button>
+                                                component={NavLink}
+                                                sx={{color: '#3F72AF'}}>{t('view')}</Button>
                                         <Button size="small"
                                                 to={`/races/${race.id}/update`}
-                                                component={NavLink}>Edit</Button>
+                                                component={NavLink}
+                                                sx={{color: '#3F72AF'}}>{t('edit')}</Button>
                                     </CardActions>
                                 </Card>
                             </Grid>

@@ -76,8 +76,8 @@ export default function Competitors() {
         <>
             {message.isVisible && <Alert severity={message.severity}>{message.message}</Alert>}
             {
-                loading ? <CircularProgress/> : <Paper sx={{ width: '100%', overflow: 'hidden', mt: 2}}>
-                    <TableContainer sx={{ maxHeight: 440 }}>
+                loading ? <CircularProgress/> : <Paper sx={{ width: '100%', overflow: 'hidden', mt: '90px'}}>
+                    <TableContainer sx={{ maxHeight: 440}}>
                         <Table stickyHeader aria-label="sticky table">
                             <TableHead>
                                 <TableRow>

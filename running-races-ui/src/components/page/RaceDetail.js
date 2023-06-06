@@ -32,7 +32,7 @@ const RaceDetail = () => {
         <>
             {
                 loading ? <CircularProgress/> :
-                    <Container maxWidth="lg" sx={{marginTop: '20px'}}>
+                    <Container maxWidth="lg" sx={{marginTop: '90px'}}>
                         {message.isVisible && <Alert severity={message.severity}>{message.message}</Alert>}
                         <Grid container spacing={2}>
                             <Grid item xs={5}>
@@ -55,13 +55,16 @@ const RaceDetail = () => {
                                     <Grid item xs={12}>
                                         <Button size="small"
                                                 to={`/competitors/${race.id}/create`}
-                                                component={NavLink}>Register</Button>
+                                                component={NavLink}
+                                                sx={{color: '#3F72AF'}}>Register</Button>
                                         <Button size="small"
                                                 to={`/competitors/${race.id}`}
-                                                component={NavLink}>Competitors</Button>
+                                                component={NavLink}
+                                                sx={{color: '#3F72AF'}}>Competitors</Button>
                                         <Button size="small"
                                                 to={`/races/${race.id}/update`}
-                                                component={NavLink}>Edit</Button>
+                                                component={NavLink}
+                                                sx={{color: '#3F72AF'}}>Edit</Button>
                                         <DeleteRace raceId={raceId}/>
                                     </Grid>
                                 </Grid>

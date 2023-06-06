@@ -84,7 +84,7 @@ const Competitor = () => {
                     validationSchema={competitorValidationScheme}
                 >
                     {props => (
-                        <Container maxWidth="md" sx={{marginTop: '20px'}}>
+                        <Container maxWidth="md" sx={{marginTop: '90px'}}>
                             <Form>
                                 <Stack spacing={2} direction="column">
                                     {message.isVisible && <Alert severity={message.severity}>{message.message}</Alert>}
@@ -145,7 +145,6 @@ const Competitor = () => {
                     )}
                 </Formik>
             }
-
         </>
 
     )

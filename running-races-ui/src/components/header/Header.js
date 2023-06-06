@@ -2,6 +2,7 @@ import React from 'react';
 import { AppBar, Box, Button, IconButton, Toolbar, Typography, Menu, MenuItem, Link, useMediaQuery, useTheme } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
+import LanguageSwitcher from "../switcher/LanguageSwitcher";
 
 const Header = () => {
     const theme = useTheme();
@@ -18,12 +19,12 @@ const Header = () => {
 
     return (
         <AppBar
-            position="static"
-            sx={{ backgroundColor: '#ccd5ae', borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
+            position="fixed"
+            sx={{ backgroundColor: '#112D4E', borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
         >
             <Toolbar sx={{ flexWrap: 'wrap' }}>
-                <Typography variant="h6" color="inherit" noWrap component={NavLink} to="/" sx={{ flexGrow: 1, textDecoration: 'unset', color: '#faedcd' }}>
-                    Running Races
+                <Typography variant="h6" color="inherit" noWrap component={NavLink} to="/" sx={{ flexGrow: 1, textDecoration: 'unset', color: '#F9F7F7' }}>
+                    RunRaceBook
                 </Typography>
                 {isMobile ? (
                     <>
@@ -70,16 +71,16 @@ const Header = () => {
                             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                         >
-                            <MenuItem component={NavLink} to="/" exact sx={{ color: '#a3b18a' }}>
+                            <MenuItem component={NavLink} to="/" sx={{ color: '#a44a3f' }}>
                                 Home
                             </MenuItem>
-                            <MenuItem component={NavLink} to="/races/create" sx={{ color: '#a3b18a' }}>
+                            <MenuItem component={NavLink} to="/races/create" sx={{ color: '#a44a3f' }}>
                                 Create Race
                             </MenuItem>
-                            <MenuItem component={NavLink} to="/users/register" sx={{ color: '#a3b18a' }}>
+                            <MenuItem component={NavLink} to="/users/register" sx={{ color: '#a44a3f' }}>
                                 User Registration
                             </MenuItem>
-                            <MenuItem component={NavLink} to="/login" sx={{ color: '#a3b18a' }}>
+                            <MenuItem component={NavLink} to="/login" sx={{ color: '#a44a3f' }}>
                                 Login
                             </MenuItem>
                         </Menu>
@@ -87,17 +88,18 @@ const Header = () => {
                 ) : (
                     <>
                         <nav>
-                            <Link variant="button" color="text.primary" to="/" component={NavLink} sx={{ my: 1, mx: 1.5, color: '#d4a373', textDecoration: 'none'}}>
+                            <Link variant="button" color="text.primary" to="/" component={NavLink} sx={{ my: 1, mx: 1.5, color: '#F9F7F7', textDecoration: 'none'}}>
                                 Home
                             </Link>
-                            <Link variant="button" color="text.primary" to="/races/create" component={NavLink} sx={{ my: 1, mx: 1.5, color: '#d4a373', textDecoration: 'none' }}>
+                            <Link variant="button" color="text.primary" to="/races/create" component={NavLink} sx={{ my: 1, mx: 1.5, color: '#F9F7F7', textDecoration: 'none' }}>
                                 Create Race
                             </Link>
-                            <Link variant="button" color="text.primary" to="/users/register" component={NavLink} sx={{ my: 1, mx: 1.5, color: '#d4a373', textDecoration: 'none' }}>
+                            <Link variant="button" color="text.primary" to="/users/register" component={NavLink} sx={{ my: 1, mx: 1.5, color: '#F9F7F7', textDecoration: 'none' }}>
                                 User Registration
                             </Link>
                         </nav>
-                        <Button href="/login" variant="outlined" sx={{ my: 1, mx: 1.5, color: '#faedcd', borderColor: '#faedcd' }}>
+                        <LanguageSwitcher/>
+                        <Button href="/login" variant="outlined" sx={{ my: 1, mx: 1.5, color: '#F9F7F7', borderColor: '#F9F7F7' }}>
                             Login
                         </Button>
                     </>

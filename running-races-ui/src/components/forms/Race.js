@@ -101,7 +101,7 @@ const Race = () => {
             >
 
                 {props => (
-                    <Container maxWidth="md" sx={{marginTop: '20px'}}>
+                    <Container maxWidth="md" sx={{marginTop: '90px'}}>
                         <Form>
                             <Stack spacing={2} direction="column">
                                 {message.isVisible && <Alert severity={message.severity}>{message.message}</Alert>}
@@ -163,7 +163,12 @@ const Race = () => {
                                 <Typography sx={{textAlign: 'center', mt: 2}}>
                                     {
                                         props.isSubmitting ? <CircularProgress/> :
-                                            <Button variant="outlined" type="submit">{raceId ? 'Update race' : 'Create race'}</Button>
+                                            <Button
+                                                variant="outlined"
+                                                type="submit"
+                                                sx={{color: '#3F72AF'}}>
+                                                {raceId ? 'Update race' : 'Create race'}
+                                            </Button>
                                     }
                                 </Typography>
                             </Stack>
