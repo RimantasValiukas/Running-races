@@ -1,0 +1,7 @@
+{
+  "races": {
+    "view": "VIEW",
+    "edit": "EDIT",
+    "noRaceMsg": "There is no scheduled race"
+  }
+}
