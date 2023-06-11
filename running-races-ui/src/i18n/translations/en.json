@@ -3,5 +3,82 @@
     "view": "VIEW",
     "edit": "EDIT",
     "noRaceMsg": "There is no scheduled race"
+  },
+  "raceDetail": {
+    "register": "Register",
+    "competitors": "Competitors",
+    "edit": "Edit",
+    "delete": "Delete",
+    "organizer": "Organizer:",
+    "dateTime": "Date and time:",
+    "address": "Address:",
+    "description": "Description:",
+    "titleConfirm": "Confirm Delete",
+    "deleteConfirmation": "Are you sure you want to delete this race?",
+    "cancel": "Cancel"
+  },
+  "competitor": {
+    "titleRegister": "Register for the race",
+    "name": "Name",
+    "surname": "Surname",
+    "dateOfBirth": "Date of birth",
+    "city": "City",
+    "club": "Club",
+    "distance": "Distance",
+    "btnRegister": "Register",
+    "successMessage": "You have successfully registered",
+    "errorMessage": "Something goes wrong",
+    "nameRequired": "Name is required",
+    "surnameRequired": "Surname is required",
+    "dateOfBirthRequired": "Date of birth is required",
+    "cityRequired": "City is required",
+    "distanceRequired": "Distance is required",
+    "cantFind": "Cannot find the race"
+  },
+  "competitors": {
+    "title": "Race participants",
+    "name": "Name, Surname",
+    "dateOfBirth": "Date of Birth",
+    "city": "City",
+    "club": "Club",
+    "distance": "Distance (km)",
+    "noCompetitorsMessage": "There are no registered competitors yet",
+    "errorMessage": "Something goes wrong",
+    "rows": "Participants per page:"
+  },
+  "race": {
+    "titleCreate": "Create race",
+    "titleUpdate": "Update race",
+    "name": "The name of the race",
+    "address": "Racing address",
+    "description": "Description",
+    "organizer": "Race organizer",
+    "image": "Image URL",
+    "dateTime": "Race Date And Time",
+    "distance": "Distance (km)",
+    "btnAddDistance": "Add Distance",
+    "btnUpdate": "Update Race",
+    "btnCreate": "Create Race",
+    "successMessage": "Race created successfully",
+    "errorMessage": "Race cannot be created",
+    "validation": {
+      "name": "Name is required",
+      "address": "Address is required",
+      "description": "Description is required",
+      "organizer": "Organizer is required",
+      "dateTime": "Date is required",
+      "distances": {
+        "required": "Distance is required",
+        "minValue": "Distance can not be less than 0.1 km",
+        "typeError": "Distance must be a number",
+        "minArrayLength": "At least one distance is required"
+      }
+    }
+  },
+  "header": {
+    "home": "HOME",
+    "create": "CREATE RACE",
+    "registration": "USER REGISTRATION",
+    "login": "LOGIN"
   }
 }

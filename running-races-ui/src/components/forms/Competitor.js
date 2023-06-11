@@ -19,15 +19,7 @@ import Typography from "@mui/material/Typography";
 import FormInputs from "./FormInputs";
 import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
-
-const competitorValidationScheme = Yup.object().shape(
-    {
-        name: Yup.string().required('Name is required'),
-        surname: Yup.string().required('Surname is required'),
-        dateOfBirth: Yup.date().required('Date of birth is required'),
-        city: Yup.string().required('City is required'),
-        distance: Yup.number().required('Distance is required')
-    });
+import {useTranslation} from "react-i18next";
 
 const Competitor = () => {
 
@@ -35,6 +27,7 @@ const Competitor = () => {
     const {raceId} = useParams();
     const [distances, setDistances] = useState([]);
     const [loading, setLoading] = useState(true);
+    const {t} = useTranslation('competitor');
     const [competitor, setCompetitor] = useState({
         name: '',
         surname: '',
@@ -45,11 +38,20 @@ const Competitor = () => {
         raceId: ''
     });
 
+    const competitorValidationScheme = Yup.object().shape(
+        {
+            name: Yup.string().required(t('nameRequired')),
+            surname: Yup.string().required(t('surnameRequired')),
+            dateOfBirth: Yup.date().required(t('dateOfBirthRequired')),
+            city: Yup.string().required(t('cityRequired')),
+            distance: Yup.number().required(t('distanceRequired'))
+        });
+
     useEffect(() => {
         getRaceById(raceId)
             .then(({data}) => setDistances(data.distances))
             .catch((error) => {
-                setMessage({isVisible: true, message: 'Cannot find the race', severity: 'error'});
+                setMessage({isVisible: true, message: t('cantFind'), severity: 'error'});
                 console.log(error);
             })
             .finally(() => setLoading(false));
@@ -66,10 +68,10 @@ const Competitor = () => {
         createCompetitor(updatedValues)
             .then(() => {
                 helper.resetForm();
-                setMessage({isVisible: true, message: 'You have successfully registered', severity: 'success'});
+                setMessage({isVisible: true, message: t('successMessage'), severity: 'success'});
             })
             .catch((error) => {
-                setMessage({isVisible: true, message: 'Something goes wrong', severity: 'error'});
+                setMessage({isVisible: true, message: t('errorMessage'), severity: 'error'});
                 console.log(error);
             })
             .finally(() => helper.setSubmitting(false));
@@ -88,17 +90,17 @@ const Competitor = () => {
                             <Form>
                                 <Stack spacing={2} direction="column">
                                     {message.isVisible && <Alert severity={message.severity}>{message.message}</Alert>}
-                                    <Typography variant="h5">Register for the race</Typography>
+                                    <Typography variant="h5">{t('titleRegister')}</Typography>
                                     <FormInputs error={props.touched.name && !!props.errors.name}
                                                 name="name"
-                                                label="Name"/>
+                                                label={t('name')}/>
                                     <FormInputs error={props.touched.surname && !!props.errors.surname}
                                                 name="surname"
-                                                label="Surname"/>
+                                                label={t('surname')}/>
 
                                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                                         <DatePicker
-                                            label="Date of birth"
+                                            label={t('dateOfBirth')}
                                             value={props.values.dateOfBirth}
                                             onChange={(value) => props.setFieldValue("dateOfBirth", value)}
                                             format="yyyy-MM-dd"
@@ -110,13 +112,13 @@ const Competitor = () => {
 
                                     <FormInputs error={props.touched.city && !!props.errors.city}
                                                 name="city"
-                                                label="City"/>
+                                                label={t('city')}/>
                                     <FormInputs error={props.touched.club && !!props.errors.club}
                                                 name="club"
-                                                label="Club"/>
+                                                label={t('club')}/>
 
                                     <FormControl fullWidth>
-                                        <InputLabel>Distance</InputLabel>
+                                        <InputLabel>{t('distance')}</InputLabel>
                                         <Field
                                             as={Select}
                                             value={props.values.distance}
@@ -136,7 +138,7 @@ const Competitor = () => {
                                     <Typography sx={{textAlign: 'center', mt: 2}}>
                                         {
                                             props.isSubmitting ? <CircularProgress/> :
-                                                <Button variant="outlined" type="submit">Register</Button>
+                                                <Button variant="outlined" type="submit">{t('btnRegister')}</Button>
                                         }
                                     </Typography>
                                 </Stack>

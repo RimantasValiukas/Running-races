@@ -8,18 +8,12 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import {useEffect, useState} from "react";
-import {getCompetitors, getCompetitorsByRaceId} from "../api/raceApi";
+import {getCompetitorsByRaceId} from "../api/raceApi";
 import {useParams} from "react-router-dom";
 import {Alert, CircularProgress} from "@mui/material";
 import {format, parseISO} from "date-fns";
-
-const columns = [
-    { id: 'name', label: 'Name, Surname', minWidth: 170 },
-    { id: 'dateOfBirth', label: 'Date of birth', minWidth: 170 },
-    { id: 'city', label: 'City', minWidth: 170 },
-    { id: 'club', label: 'Club', minWidth: 170 },
-    { id: 'distance', label: 'Distance (km)', minWidth: 170 },
-];
+import Typography from "@mui/material/Typography";
+import {useTranslation} from "react-i18next";
 
 export default function Competitors() {
     const [page, setPage] = React.useState(0);
@@ -29,6 +23,15 @@ export default function Competitors() {
     const [message, setMessage] = useState({isVisible: false});
     const {raceId} = useParams();
     const [rows, setRows] = useState([]);
+    const {t} = useTranslation('competitors');
+
+    const columns = [
+        {id: 'name', label: t('name'), minWidth: 170},
+        {id: 'dateOfBirth', label: t('dateOfBirth'), minWidth: 170},
+        {id: 'city', label: t('city'), minWidth: 170},
+        {id: 'club', label: t('club'), minWidth: 170},
+        {id: 'distance', label: t('distance'), minWidth: 170},
+    ];
 
     useEffect(() => {
         getCompetitorsByRaceId(raceId)
@@ -36,11 +39,11 @@ export default function Competitors() {
                 if (data.length > 0) {
                     setCompetitors(data);
                 } else {
-                    setMessage({isVisible: true, message: 'There are no registered competitors yet', severity: 'info'})
+                    setMessage({isVisible: true, message: t('noCompetitorsMessage'), severity: 'info'})
                 }
             })
             .catch((error) => {
-                setMessage({isVisible: true, message: 'Something goes wrong', severity: 'error'});
+                setMessage({isVisible: true, message: t('errorMessage'), severity: 'error'});
                 console.log(error);
             })
             .finally(() => setLoading(false));
@@ -74,59 +77,61 @@ export default function Competitors() {
 
     return (
         <>
-            {message.isVisible && <Alert severity={message.severity}>{message.message}</Alert>}
-            {
-                loading ? <CircularProgress/> : <Paper sx={{ width: '100%', overflow: 'hidden', mt: '90px'}}>
-                    <TableContainer sx={{ maxHeight: 440}}>
-                        <Table stickyHeader aria-label="sticky table">
-                            <TableHead>
-                                <TableRow>
-                                    {columns.map((column) => (
-                                        <TableCell
-                                            key={column.id}
-                                            align={column.align}
-                                            style={{ minWidth: column.minWidth }}
-                                        >
-                                            {column.label}
-                                        </TableCell>
-                                    ))}
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {rows
-                                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                    .map((row) => {
-                                        return (
-                                            <TableRow hover role="checkbox" tabIndex={-1} key={row.name}>
-                                                {columns.map((column) => {
-                                                    const value = row[column.id];
-                                                    return (
-                                                        <TableCell key={column.id} align={column.align}>
-                                                            {column.format && typeof value === 'number'
-                                                                ? column.format(value)
-                                                                : value}
-                                                        </TableCell>
-                                                    );
-                                                })}
-                                            </TableRow>
-                                        );
-                                    })}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                    <TablePagination
-                        rowsPerPageOptions={[10, 25, 100]}
-                        component="div"
-                        count={rows.length}
-                        rowsPerPage={rowsPerPage}
-                        page={page}
-                        onPageChange={handleChangePage}
-                        onRowsPerPageChange={handleChangeRowsPerPage}
-                    />
-                </Paper>
+            {message.isVisible ? <Alert severity={message.severity} sx={{mt: '90px'}}>{message.message}</Alert> :
+                loading ? <CircularProgress/> :
+                    <>
+                        <Typography variant="h5" sx={{mt: '90px'}}>{t('title')}</Typography>
+                        <Paper sx={{width: '100%', overflow: 'hidden', mt: '20px'}}>
+                            <TableContainer sx={{maxHeight: 440}}>
+                                <Table stickyHeader aria-label="sticky table">
+                                    <TableHead>
+                                        <TableRow>
+                                            {columns.map((column) => (
+                                                <TableCell
+                                                    key={column.id}
+                                                    align={column.align}
+                                                    style={{minWidth: column.minWidth}}
+                                                >
+                                                    {column.label}
+                                                </TableCell>
+                                            ))}
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {rows
+                                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                            .map((row) => {
+                                                return (
+                                                    <TableRow hover role="checkbox" tabIndex={-1} key={row.name}>
+                                                        {columns.map((column) => {
+                                                            const value = row[column.id];
+                                                            return (
+                                                                <TableCell key={column.id} align={column.align}>
+                                                                    {column.format && typeof value === 'number'
+                                                                        ? column.format(value)
+                                                                        : value}
+                                                                </TableCell>
+                                                            );
+                                                        })}
+                                                    </TableRow>
+                                                );
+                                            })}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                            <TablePagination
+                                rowsPerPageOptions={[10, 25, 100]}
+                                component="div"
+                                count={rows.length}
+                                rowsPerPage={rowsPerPage}
+                                page={page}
+                                onPageChange={handleChangePage}
+                                onRowsPerPageChange={handleChangeRowsPerPage}
+                                labelRowsPerPage={t('rows')}
+                            />
+                        </Paper>
+                    </>
             }
-
         </>
-
     );
 }

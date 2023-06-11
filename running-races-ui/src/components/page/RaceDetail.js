@@ -6,6 +6,7 @@ import Container from "@mui/material/Container";
 import {format, parseISO} from "date-fns";
 import DeleteRace from "../DeleteRace";
 import Competitor from "../forms/Competitor";
+import {useTranslation} from "react-i18next";
 
 const Item = styled(Paper)(({theme}) => ({
     ...theme.typography.body2,
@@ -20,6 +21,7 @@ const RaceDetail = () => {
     const [loading, setLoading] = useState(true);
     const [race, setRace] = useState({});
     const [message, setMessage] = useState({isVisible: false});
+    const {t} = useTranslation('raceDetail');
 
     useEffect(() => {
         getRaceById(raceId)
@@ -44,27 +46,27 @@ const RaceDetail = () => {
                             <Grid item xs={7}>
                                 <Typography variant="h5" align="center">{race.name}</Typography>
                                 <Grid container spacing={2} sx={{mt: 2, ml: 1}}>
-                                    <Grid item xs={2}>Organizer:</Grid>
+                                    <Grid item xs={2}>{t('organizer')}</Grid>
                                     <Grid item xs={10}>{race.organizer}</Grid>
-                                    <Grid item xs={2}>Date and time:</Grid>
+                                    <Grid item xs={2}>{t('dateTime')}</Grid>
                                     <Grid item xs={10}>{format(parseISO(race.dateTime), 'yyyy-MM-dd hh:mm')}</Grid>
-                                    <Grid item xs={2}>Address:</Grid>
+                                    <Grid item xs={2}>{t('address')}</Grid>
                                     <Grid item xs={10}>{race.address}</Grid>
-                                    <Grid item xs={2}>Description:</Grid>
+                                    <Grid item xs={2}>{t('description')}</Grid>
                                     <Grid item xs={10}>{race.description}</Grid>
                                     <Grid item xs={12}>
                                         <Button size="small"
                                                 to={`/competitors/${race.id}/create`}
                                                 component={NavLink}
-                                                sx={{color: '#3F72AF'}}>Register</Button>
+                                                sx={{color: '#3F72AF'}}>{t('register')}</Button>
                                         <Button size="small"
                                                 to={`/competitors/${race.id}`}
                                                 component={NavLink}
-                                                sx={{color: '#3F72AF'}}>Competitors</Button>
+                                                sx={{color: '#3F72AF'}}>{t('competitors')}</Button>
                                         <Button size="small"
                                                 to={`/races/${race.id}/update`}
                                                 component={NavLink}
-                                                sx={{color: '#3F72AF'}}>Edit</Button>
+                                                sx={{color: '#3F72AF'}}>{t('edit')}</Button>
                                         <DeleteRace raceId={raceId}/>
                                     </Grid>
                                 </Grid>

@@ -25,20 +25,28 @@ const Races = () => {
     useEffect(() => {
         getRaces()
             .then(({data}) => {
-                if (data.length > 0) {
-                    const sortedRaces = data.sort((a, b) => {
+                const upcomingRaces = filterUpcomingRaces(data);
+                if (upcomingRaces.length > 0) {
+                    const sortedRaces = upcomingRaces.sort((a, b) => {
                         const dateA = parseISO(a.dateTime);
                         const dateB = parseISO(b.dateTime);
                         return dateA - dateB;
                     });
                     setRaces(sortedRaces);
                 } else {
-                    setMessage({isVisible: true, message: 'There is no scheduled race', severity:'info'})
+                    setMessage({isVisible: true, message: t('noRaceMsg'), severity: 'info'})
                 }
             })
             .catch((error) => console.log('error', error))
             .finally(() => setLoading(false));
     }, []);
+
+    const filterUpcomingRaces = (data) => {
+        const currentDate = new Date();
+
+        return data.filter(data => parseISO(data.dateTime) > currentDate);
+    }
+
 
     return (
         <>
@@ -49,7 +57,12 @@ const Races = () => {
                         {races.map((race) => (
                             <Grid item key={race.name} xs={12} sm={6} md={4}>
                                 <Card
-                                    sx={{height: '100%', display: 'flex', flexDirection: 'column', backgroundColor: '#DBE2EF'}}
+                                    sx={{
+                                        height: '100%',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        backgroundColor: '#DBE2EF'
+                                    }}
                                 >
                                     <CardMedia
                                         component="div"

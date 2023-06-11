@@ -10,19 +10,7 @@ import * as Yup from 'yup';
 import {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {parseISO} from "date-fns";
-
-
-const raceValidationScheme = Yup.object().shape(
-    {
-        name: Yup.string().required('Name is required'),
-        address: Yup.string().required('Address is required'),
-        description: Yup.string().required('Description is required'),
-        organizer: Yup.string().required('Organizer is required'),
-        dateTime: Yup.date().required('Date is required'),
-        distances: Yup.array()
-            .of(Yup.number().min(0.1, 'Distance can not be less than 0.1 km').required('Distance is required'))
-            .min(1, 'At least one distance is required').typeError('Distance must be a number')
-    });
+import {useTranslation} from "react-i18next";
 
 const Race = () => {
 
@@ -39,6 +27,19 @@ const Race = () => {
         dateTime: null,
         distances: []
     });
+    const {t} = useTranslation('race');
+
+    const raceValidationScheme = Yup.object().shape(
+        {
+            name: Yup.string().required(t('validation.name')),
+            address: Yup.string().required(t('validation.address')),
+            description: Yup.string().required(t('validation.description')),
+            organizer: Yup.string().required(t('validation.organizer')),
+            dateTime: Yup.date().required(t('validation.dateTime')),
+            distances: Yup.array()
+                .of(Yup.number().min(0.1, t('validation.distances.minValue')).required(t('validation.distances.required')))
+                .min(1, t('validation.distances.minArrayLength')).typeError(t('validation.distances.typeError'))
+        });
 
     useEffect(() => {
         if (!raceId) {
@@ -68,7 +69,7 @@ const Race = () => {
     const onRaceUpdate = (values, helper) => {
         updateRace(values, raceId)
             .then(() => navigation(`/races/${raceId}`))
-            .catch((error) => setMessage({isVisible: true, message: 'Race cannot be updated', severity:'error'}))
+            .catch((error) => setMessage({isVisible: true, message: t('errorMessage'), severity:'error'}))
             .finally(() => helper.setSubmitting(false));
     }
 
@@ -82,10 +83,10 @@ const Race = () => {
         createRace(updatedValues)
             .then((response) => {
                 helper.resetForm();
-                setMessage({isVisible: true, message: 'Race created successfully', severity: 'success'});
+                setMessage({isVisible: true, message: t('successMessage'), severity: 'success'});
             })
             .catch((error) => {
-                setMessage({isVisible: true, message: 'Race cannot be created', severity: 'error'});
+                setMessage({isVisible: true, message: t('errorMessage'), severity: 'error'});
                 console.log(error);
             })
             .finally(() => helper.setSubmitting(false));
@@ -105,28 +106,28 @@ const Race = () => {
                         <Form>
                             <Stack spacing={2} direction="column">
                                 {message.isVisible && <Alert severity={message.severity}>{message.message}</Alert>}
-                                <Typography variant="h5">{raceId ? 'Update race' : 'Create race'}</Typography>
+                                <Typography variant="h5">{raceId ? t('titleUpdate') : t('titleCreate')}</Typography>
                                 <FormInputs error={props.touched.name && !!props.errors.name}
                                             name="name"
-                                            label="The name of the race"/>
+                                            label={t('name')}/>
                                 <FormInputs error={props.touched.address && !!props.errors.address}
                                             name="address"
-                                            label="Racing address"/>
+                                            label={t('address')}/>
                                 <FormInputs error={props.touched.description && !!props.errors.description}
                                             name="description"
-                                            label="Description"
+                                            label={t('description')}
                                             rows={3}
                                             multiline/>
                                 <FormInputs error={props.touched.organizer && !!props.errors.organizer}
                                             name="organizer"
-                                            label="Race organizer"/>
+                                            label={t('organizer')}/>
                                 <FormInputs error={props.touched.imageURL && !!props.errors.imageURL}
                                             name="imageURL"
-                                            label="Image URL"/>
+                                            label={t('image')}/>
 
                                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                                     <DateTimePicker
-                                        label="Race Date And Time"
+                                        label={t('dateTime')}
                                         value={props.values.dateTime}
                                         onChange={(value) => props.setFieldValue("dateTime", value)}
                                         format="yyyy-MM-dd HH:mm:ss"
@@ -143,7 +144,7 @@ const Race = () => {
                                                 <FormInputs
                                                     key={index}
                                                     name={`distances[${index}]`}
-                                                    label={`Distance (km)`}
+                                                    label={t('distance')}
                                                     type="number"
                                                     error={props.touched.distances && !!props.errors.distances?.[index]}
                                                 />
@@ -154,7 +155,7 @@ const Race = () => {
                                                     variant="outlined"
                                                     onClick={() => arrayHelpers.push('')}
                                                 >
-                                                    Add Distance
+                                                    {t('btnAddDistance')}
                                                 </Button>
                                             </Typography>
                                         </>
@@ -167,7 +168,7 @@ const Race = () => {
                                                 variant="outlined"
                                                 type="submit"
                                                 sx={{color: '#3F72AF'}}>
-                                                {raceId ? 'Update race' : 'Create race'}
+                                                {raceId ? t('btnUpdate') : t('btnCreate')}
                                             </Button>
                                     }
                                 </Typography>

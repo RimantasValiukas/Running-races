@@ -2,11 +2,13 @@ import {NavLink, useNavigate} from "react-router-dom";
 import {Alert, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from "@mui/material";
 import {deleteRace} from "./api/raceApi";
 import {useState} from "react";
+import {useTranslation} from "react-i18next";
 
 const DeleteRace = ({raceId}) => {
 
     const navigation = useNavigate();
     const [open, setOpen] = useState(false);
+    const {t} = useTranslation('raceDetail');
 
     const handleClose = () => setOpen(false);
     const handleOpen = () => setOpen(true);
@@ -19,19 +21,19 @@ const DeleteRace = ({raceId}) => {
     return (
         <>
             <Button size="small" color="warning" onClick={handleOpen}>
-                Delete
+                {t('delete')}
             </Button>
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Confirm Delete</DialogTitle>
+                <DialogTitle>{t('titleConfirm')}</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Are you sure you want to delete this race?
+                        {t('deleteConfirmation')}
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Cancel</Button>
+                    <Button onClick={handleClose}>{t('cancel')}</Button>
                     <Button onClick={onRaceDelete} color="error">
-                        Delete
+                        {t('delete')}
                     </Button>
                 </DialogActions>
             </Dialog>

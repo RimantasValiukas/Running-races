@@ -2,6 +2,83 @@
   "races": {
     "view": "PERŽIŪRĖTI",
     "edit": "KEISTI",
-    "noRaceMsg": ""
+    "noRaceMsg": "Nėra suplanuotų varžybų"
+  },
+  "raceDetail": {
+    "register": "REGISTRUOTIS",
+    "competitors": "DALYVIAI",
+    "edit": "KEISTI",
+    "delete": "TRINTI",
+    "organizer": "Organizatorius:",
+    "dateTime": "Data ir laikas:",
+    "address": "Adresas:",
+    "description": "Aprašymas:",
+    "titleConfirm": "Patvirtinkite ištrynimą",
+    "deleteConfirmation": "Ar tikrai norite ištrinti šias varžybas?",
+    "cancel": "Atšaukti"
+  },
+  "competitor": {
+    "titleRegister": "Varžybų registracija",
+    "name": "Vardas",
+    "surname": "Pavardė",
+    "dateOfBirth": "Gimimo data",
+    "city": "Miestas",
+    "club": "Klubas",
+    "distance": "Distancija",
+    "btnRegister": "Registruotis",
+    "successMessage": "Sėkmingai užsiregistravote",
+    "errorMessage": "Kažkas negerai",
+    "nameRequired": "Vardas yra privalomas",
+    "surnameRequired": "Pavardė yra privaloma",
+    "dateOfBirthRequired": "Gimimo data yra privaloma",
+    "cityRequired": "Miestas yra privalomas",
+    "distanceRequired": "Distancija yra privaloma",
+    "cantFind": "Negalime rasti tokių varžybų"
+  },
+  "competitors": {
+    "title": "Varžybų dalyviai",
+    "name": "Vardas, Pavardė",
+    "dateOfBirth": "Gimimo data",
+    "city": "Miestas",
+    "club": "Klubas",
+    "distance": "Distancija (km)",
+    "noCompetitorsMessage": "Dar nėra registruotų dalyvių",
+    "errorMessage": "Kažkas negerai",
+    "rows": "Dalyvių puslapyje:"
+  },
+  "race": {
+    "titleCreate": "Sukurti varžybas",
+    "titleUpdate": "Pakeisti varžybas",
+    "name": "Varžybų pavadinimas",
+    "address": "Varžybų adresas",
+    "description": "Aprašymas",
+    "organizer": "Varžybų organizatorius",
+    "image": "Paveikslėlio URL adresas",
+    "dateTime": "Varžybų data ir laikas",
+    "distance": "Distancija (km)",
+    "btnAddDistance": "Pridėti distanciją",
+    "btnUpdate": "Keisti varžybas",
+    "btnCreate": "Sukurti varžybas",
+    "successMessage": "Varžybos sėkmingai sukurtos",
+    "errorMessage": "Varžybos negali būti sukurtos",
+    "validation": {
+      "name": "Pavadinimas yra privalomas",
+      "address": "Adresas yra privalomas",
+      "description": "Aprašymas yra privalomas",
+      "organizer": "Organizatorius yra privalomas",
+      "dateTime": "Data yra privaloma",
+      "distances": {
+        "required": "Distancija yra privaloma",
+        "minValue": "Distancija negali būti trumpesnė nei 0.1 km",
+        "typeError": "Distancija turi būti skaičius",
+        "minArrayLength": "Privaloma įvesti bent vieną distanciją"
+      }
+    }
+  },
+  "header": {
+    "home": "PRADINIS",
+    "create": "SUKURTI VARŽYBAS",
+    "registration": "VARTOTOJO REGISTRACIJA",
+    "login": "PRISIJUNGTI"
   }
 }
