@@ -2,7 +2,9 @@
   "races": {
     "view": "VIEW",
     "edit": "EDIT",
-    "noRaceMsg": "There is no scheduled race"
+    "noRaceMsg": "There is no scheduled race",
+    "upcoming": "Upcoming Races",
+    "previous": "Previous Races"
   },
   "raceDetail": {
     "register": "Register",
@@ -79,6 +81,7 @@
     "home": "HOME",
     "create": "CREATE RACE",
     "registration": "USER REGISTRATION",
-    "login": "LOGIN"
+    "login": "LOGIN",
+    "previous": "PREVIOUS RACES"
   }
 }

@@ -154,6 +154,7 @@ const Race = () => {
                                                     type="button"
                                                     variant="outlined"
                                                     onClick={() => arrayHelpers.push('')}
+                                                    sx={{color: '#3F72AF'}}
                                                 >
                                                     {t('btnAddDistance')}
                                                 </Button>

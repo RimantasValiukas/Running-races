@@ -76,6 +76,9 @@ const Header = () => {
                             <MenuItem component={NavLink} to="/" sx={{ color: '#112D4E' }}>
                                 {t('home')}
                             </MenuItem>
+                            <MenuItem component={NavLink} to="/races/previous" sx={{ color: '#112D4E' }}>
+                                {t('previous')}
+                            </MenuItem>
                             <MenuItem component={NavLink} to="/races/create" sx={{ color: '#112D4E' }}>
                                 {t('create')}
                             </MenuItem>
@@ -85,6 +88,7 @@ const Header = () => {
                             <MenuItem component={NavLink} to="/login" sx={{ color: '#112D4E' }}>
                                 {t('login')}
                             </MenuItem>
+
                         </Menu>
                     </>
                 ) : (
@@ -92,6 +96,9 @@ const Header = () => {
                         <nav>
                             <Link variant="button" color="text.primary" to="/" component={NavLink} sx={{ my: 1, mx: 1.5, color: '#F9F7F7', textDecoration: 'none'}}>
                                 {t('home')}
+                            </Link>
+                            <Link variant="button" color="text.primary" to="/races/previous" component={NavLink} sx={{ my: 1, mx: 1.5, color: '#F9F7F7', textDecoration: 'none' }}>
+                                {t('previous')}
                             </Link>
                             <Link variant="button" color="text.primary" to="/races/create" component={NavLink} sx={{ my: 1, mx: 1.5, color: '#F9F7F7', textDecoration: 'none' }}>
                                 {t('create')}

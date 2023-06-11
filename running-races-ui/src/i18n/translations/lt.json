@@ -2,7 +2,9 @@
   "races": {
     "view": "PERŽIŪRĖTI",
     "edit": "KEISTI",
-    "noRaceMsg": "Nėra suplanuotų varžybų"
+    "noRaceMsg": "Nėra suplanuotų varžybų",
+    "upcoming": "Artėjančios varžybos",
+    "previous": "Praėjusios varžybos"
   },
   "raceDetail": {
     "register": "REGISTRUOTIS",
@@ -79,6 +81,7 @@
     "home": "PRADINIS",
     "create": "SUKURTI VARŽYBAS",
     "registration": "VARTOTOJO REGISTRACIJA",
-    "login": "PRISIJUNGTI"
+    "login": "PRISIJUNGTI",
+    "previous": "PRAĖJUSIOS VARŽYBOS"
   }
 }
