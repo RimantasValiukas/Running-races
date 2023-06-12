@@ -4,13 +4,14 @@ import lt.code.academy.runningracesapi.races.dto.Race;
 import lt.code.academy.runningracesapi.races.service.RaceService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/races")
+@RequestMapping("/races")
 public class RaceController {
 
     private final RaceService raceService;
@@ -29,12 +30,14 @@ public class RaceController {
         return raceService.getRace(raceId);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public void createRace(@RequestBody Race race) {
         raceService.saveRace(race);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping(value = "/{raceId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void updateRace(@RequestBody Race race, @PathVariable("raceId") UUID raceId) {
@@ -42,6 +45,7 @@ public class RaceController {
         raceService.saveRace(race);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping(value = "/{raceId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteRace(@PathVariable("raceId") UUID raceId) {

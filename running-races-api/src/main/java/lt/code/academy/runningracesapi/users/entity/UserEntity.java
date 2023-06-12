@@ -6,9 +6,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lt.code.academy.runningracesapi.users.dto.User;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.Set;
 import java.util.UUID;
 
 @Setter
@@ -31,20 +34,21 @@ public class UserEntity {
     @Column(nullable = false)
     private String password;
     @Column(nullable = false)
-    private String confirmPassword;
-    @Column(nullable = false)
     private Timestamp dateOfBirth;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<RoleEntity> roles;
 
     public static UserEntity convert(User user) {
+        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         return new UserEntity(
                 user.getId(),
                 user.getName(),
                 user.getSurname(),
                 user.getEmail(),
-                user.getPassword(),
-                user.getConfirmPassword(),
-                user.getDateOfBirth()
-        );
+                encoder.encode(user.getPassword()),
+                user.getDateOfBirth(),
+                Set.of(new RoleEntity(UUID.fromString("b26cb831-9427-41ee-adcc-271f7b02d611"), "USER")));
     }
 
 
