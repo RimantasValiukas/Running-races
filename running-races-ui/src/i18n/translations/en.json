@@ -83,5 +83,12 @@
     "registration": "USER REGISTRATION",
     "login": "LOGIN",
     "previous": "PREVIOUS RACES"
+  },
+  "login": {
+    "signin": "Sign in",
+    "email": "Email",
+    "password": "Password",
+    "noAccount": "Don't have an account? Sign Up",
+    "remember": "Remember me"
   }
 }

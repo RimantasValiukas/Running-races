@@ -6,6 +6,7 @@ import RaceDetail from "../page/RaceDetail";
 import Competitor from "../forms/Competitor";
 import Competitors from "../page/Competitors";
 import {parseISO} from "date-fns";
+import Login from "../forms/Login";
 
 const Content = () => {
 
@@ -31,6 +32,7 @@ const Content = () => {
                 <Route path="/races/:raceId/update" element={<Race key="update"/>}/>
                 <Route path="/competitors/:raceId/create" element={<Competitor/>}/>
                 <Route path="/competitors/:raceId" element={<Competitors/>}/>
+                <Route path="/login" element={<Login/>}/>
             </Routes>
         </Container>
     );

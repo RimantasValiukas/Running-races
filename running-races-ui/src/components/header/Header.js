@@ -108,7 +108,7 @@ const Header = () => {
                             </Link>
                         </nav>
                         <LanguageSwitcher/>
-                        <Button href="/login" variant="outlined" sx={{ my: 1, mx: 1.5, color: '#F9F7F7', borderColor: '#F9F7F7' }}>
+                        <Button to="/login" component={NavLink} variant="outlined" sx={{ my: 1, mx: 1.5, color: '#F9F7F7', borderColor: '#F9F7F7' }}>
                             {t('login')}
                         </Button>
                     </>

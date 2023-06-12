@@ -83,5 +83,12 @@
     "registration": "VARTOTOJO REGISTRACIJA",
     "login": "PRISIJUNGTI",
     "previous": "PRAĖJUSIOS VARŽYBOS"
+  },
+  "login": {
+    "signin": "Registruotis",
+    "email": "El. Paštas",
+    "password": "Slaptažodis",
+    "noAccount": "Neturite paskyros? Registruokitės",
+    "remember": "Prisiminti mane"
   }
 }
