@@ -16,6 +16,7 @@ import java.util.UUID;
 public class Competitor {
     private UUID id;
     private UUID raceId;
+    private UUID userId;
     private String name;
     private String surname;
     private Timestamp dateOfBirth;
@@ -28,6 +29,7 @@ public class Competitor {
         return new Competitor(
                 entity.getCompetitorId(),
                 entity.getRaceId(),
+                entity.getUserId(),
                 entity.getName(),
                 entity.getSurname(),
                 entity.getDateOfBirth(),

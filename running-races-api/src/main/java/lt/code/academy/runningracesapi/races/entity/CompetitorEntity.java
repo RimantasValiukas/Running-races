@@ -8,6 +8,8 @@ import lombok.Setter;
 import lt.code.academy.runningracesapi.races.dto.Competitor;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -22,6 +24,8 @@ public class CompetitorEntity {
     private UUID competitorId;
     @Column(insertable = false, updatable = false)
     private UUID raceId;
+    @Column
+    private UUID userId;
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
@@ -44,6 +48,7 @@ public class CompetitorEntity {
         return new CompetitorEntity(
                 competitor.getId(),
                 competitor.getRaceId(),
+                competitor.getUserId(),
                 competitor.getName(),
                 competitor.getSurname(),
                 competitor.getDateOfBirth(),
