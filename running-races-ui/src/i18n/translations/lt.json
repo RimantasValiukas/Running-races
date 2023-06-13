@@ -82,7 +82,8 @@
     "create": "SUKURTI VARŽYBAS",
     "registration": "VARTOTOJO REGISTRACIJA",
     "login": "PRISIJUNGTI",
-    "previous": "PRAĖJUSIOS VARŽYBOS"
+    "previous": "PRAĖJUSIOS VARŽYBOS",
+    "logout": "Atsijungti"
   },
   "login": {
     "signin": "Prisijungti",

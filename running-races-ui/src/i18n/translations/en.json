@@ -82,7 +82,8 @@
     "create": "CREATE RACE",
     "registration": "USER REGISTRATION",
     "login": "LOGIN",
-    "previous": "PREVIOUS RACES"
+    "previous": "PREVIOUS RACES",
+    "logout": "Logout"
   },
   "login": {
     "signin": "Sign in",
