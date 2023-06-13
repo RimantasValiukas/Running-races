@@ -37,7 +37,7 @@ public class JwtService {
                 .setIssuer("running-races-api")
                 .setIssuedAt(date)
                 .setExpiration(new Date(date.getTime() + tokenValidMs))
-                .setSubject(user.getEmail())
+                .setSubject(user.getUsername())
                 .claim("roles", user.getRoles().stream().map(Role::getAuthority).toList())
                 .signWith(Keys.hmacShaKeyFor(secretKey), SignatureAlgorithm.HS512)
                 .compact();
@@ -54,10 +54,10 @@ public class JwtService {
 
             validateToken(body);
 
-            String userName = body.getSubject();
+            String username = body.getSubject();
             List<SimpleGrantedAuthority> roles = ((List<String>) body.get("roles")).stream().map(SimpleGrantedAuthority::new).toList();
 
-            return new UsernamePasswordAuthenticationToken(userName, null, roles);
+            return new UsernamePasswordAuthenticationToken(username, null, roles);
 
         } catch (ExpiredTokenException e) {
             throw e;

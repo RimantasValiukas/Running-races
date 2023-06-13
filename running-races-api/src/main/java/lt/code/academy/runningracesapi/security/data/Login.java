@@ -1,5 +1,5 @@
 package lt.code.academy.runningracesapi.security.data;
 
-public record Login(String email, String password) {
+public record Login(String username, String password) {
 
 }
