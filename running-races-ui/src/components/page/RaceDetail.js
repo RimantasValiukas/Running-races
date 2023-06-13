@@ -7,6 +7,7 @@ import {format, parseISO} from "date-fns";
 import DeleteRace from "../DeleteRace";
 import Competitor from "../forms/Competitor";
 import {useTranslation} from "react-i18next";
+import {useSelector} from "react-redux";
 
 const Item = styled(Paper)(({theme}) => ({
     ...theme.typography.body2,
@@ -22,6 +23,7 @@ const RaceDetail = () => {
     const [race, setRace] = useState({});
     const [message, setMessage] = useState({isVisible: false});
     const {t} = useTranslation('raceDetail');
+    const user = useSelector(store => store.user.user);
 
     useEffect(() => {
         getRaceById(raceId)
@@ -63,11 +65,11 @@ const RaceDetail = () => {
                                                 to={`/competitors/${race.id}`}
                                                 component={NavLink}
                                                 sx={{color: '#3F72AF'}}>{t('competitors')}</Button>
-                                        <Button size="small"
-                                                to={`/races/${race.id}/update`}
-                                                component={NavLink}
-                                                sx={{color: '#3F72AF'}}>{t('edit')}</Button>
-                                        <DeleteRace raceId={raceId}/>
+                                        {user?.roles.includes('ADMIN') && <Button size="small"
+                                                 to={`/races/${race.id}/update`}
+                                                 component={NavLink}
+                                                 sx={{color: '#3F72AF'}}>{t('edit')}</Button>}
+                                        {user?.roles.includes('ADMIN') && <DeleteRace raceId={raceId}/>}
                                     </Grid>
                                 </Grid>
                             </Grid>

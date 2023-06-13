@@ -27,13 +27,13 @@ const Content = () => {
     return (
         <Container maxWidth="xl">
             <Routes>
-                <Route path="/races/create" element={<SecuredRoute/>}>
+                <Route path="/races/create" element={<SecuredRoute roles={['ADMIN']}/>}>
                     <Route path="/races/create" element={<Race/>}/>
                 </Route>
                 <Route path="/" element={<Races filterFunction={filterUpcomingRaces} key="upcoming" keyProp="upcoming"/>}/>
                 <Route path="/races/previous" element={<Races filterFunction={filterPreviousRaces} key="previous" keyProp="previous"/>}/>
                 <Route path="/races/:raceId" element={<RaceDetail/>}/>
-                <Route path="/races/:raceId/update" element={<SecuredRoute/>}>
+                <Route path="/races/:raceId/update" element={<SecuredRoute roles={['ADMIN']}/>}>
                     <Route path="/races/:raceId/update" element={<Race key="update"/>}/>
                 </Route>
                 <Route path="/competitors/:raceId/create" element={<Competitor/>}/>

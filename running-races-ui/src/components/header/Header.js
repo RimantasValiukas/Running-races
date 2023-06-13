@@ -40,7 +40,7 @@ const Header = () => {
     };
 
     const onLogout = () => {
-        dispatch(removeUser);
+        dispatch(removeUser());
     }
 
 
@@ -113,7 +113,7 @@ const Header = () => {
                             <MenuItem component={NavLink} to="/races/previous" sx={{color: '#112D4E'}}>
                                 {t('previous')}
                             </MenuItem>
-                            {user && <MenuItem component={NavLink} to="/races/create" sx={{color: '#112D4E'}}>
+                            {user?.roles.includes('ADMIN') && <MenuItem component={NavLink} to="/races/create" sx={{color: '#112D4E'}}>
                                 {t('create')}
                             </MenuItem>}
                             <MenuItem component={NavLink} to="/registration" sx={{color: '#112D4E'}}>
@@ -129,7 +129,7 @@ const Header = () => {
                     <>
                         <MenuBarItem path='/' name={t('home')}/>
                         <MenuBarItem path='/races/previous' name={t('previous')}/>
-                        {user && <MenuBarItem path="/races/create" name={t('create')}/>}
+                        {user?.roles.includes('ADMIN') && <MenuBarItem path="/races/create" name={t('create')}/>}
                         <MenuBarItem path="/registration" name={t('registration')}/>
 
                         <LanguageSwitcher/>

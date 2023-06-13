@@ -12,8 +12,9 @@ import {
 import {useEffect, useState} from "react";
 import {getRaces} from "../api/raceApi";
 import {format, parseISO} from "date-fns";
-import {NavLink} from "react-router-dom";
+import {NavLink, useSearchParams} from "react-router-dom";
 import {useTranslation} from "react-i18next";
+import {useSelector} from "react-redux";
 
 const Races = (props) => {
 
@@ -22,6 +23,7 @@ const Races = (props) => {
     const [message, setMessage] = useState({isVisible: false});
     const {t} = useTranslation('races');
     const {filterFunction, keyProp} = props;
+    const user = useSelector(store => store.user.user)
 
     useEffect(() => {
         getRaces()
@@ -83,10 +85,10 @@ const Races = (props) => {
                                                     to={`/races/${race.id}`}
                                                     component={NavLink}
                                                     sx={{color: '#3F72AF'}}>{t('view')}</Button>
-                                            <Button size="small"
-                                                    to={`/races/${race.id}/update`}
-                                                    component={NavLink}
-                                                    sx={{color: '#3F72AF'}}>{t('edit')}</Button>
+                                            {user?.roles.includes('ADMIN') && <Button size="small"
+                                                     to={`/races/${race.id}/update`}
+                                                     component={NavLink}
+                                                     sx={{color: '#3F72AF'}}>{t('edit')}</Button>}
                                         </CardActions>
                                     </Card>
                                 </Grid>
