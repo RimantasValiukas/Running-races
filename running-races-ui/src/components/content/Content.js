@@ -8,6 +8,7 @@ import Competitors from "../page/Competitors";
 import {parseISO} from "date-fns";
 import Login from "../forms/Login";
 import UserRegistration from "../forms/UserRegistration";
+import SecuredRoute from "../security/SecuredRoute";
 
 const Content = () => {
 
@@ -26,11 +27,15 @@ const Content = () => {
     return (
         <Container maxWidth="xl">
             <Routes>
-                <Route path="/races/create" element={<Race/>}/>
+                <Route path="/races/create" element={<SecuredRoute/>}>
+                    <Route path="/races/create" element={<Race/>}/>
+                </Route>
                 <Route path="/" element={<Races filterFunction={filterUpcomingRaces} key="upcoming" keyProp="upcoming"/>}/>
                 <Route path="/races/previous" element={<Races filterFunction={filterPreviousRaces} key="previous" keyProp="previous"/>}/>
                 <Route path="/races/:raceId" element={<RaceDetail/>}/>
-                <Route path="/races/:raceId/update" element={<Race key="update"/>}/>
+                <Route path="/races/:raceId/update" element={<SecuredRoute/>}>
+                    <Route path="/races/:raceId/update" element={<Race key="update"/>}/>
+                </Route>
                 <Route path="/competitors/:raceId/create" element={<Competitor/>}/>
                 <Route path="/competitors/:raceId" element={<Competitors/>}/>
                 <Route path="/login" element={<Login/>}/>
