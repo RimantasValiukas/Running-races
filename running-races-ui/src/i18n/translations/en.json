@@ -89,6 +89,23 @@
     "email": "Email",
     "password": "Password",
     "noAccount": "Don't have an account? Sign Up",
-    "remember": "Remember me"
+    "remember": "Remember me",
+    "errorMessage": "Login failed, please check your credentials and try again",
+    "validation": {
+      "email": "Email is a required field",
+      "password": "Password is a required field"
+    }
+  },
+  "registration": {
+    "successMessage" : "You have successfully registered, please sign in.",
+    "errorMessage": "Registration failed",
+    "userRegistration": "User registration",
+    "name": "Name",
+    "surname": "Surname",
+    "email": "Email",
+    "dateOfBirth": "Date of birth",
+    "password": "Password",
+    "repeatPassword": "Password confirmation",
+    "register": "Register"
   }
 }

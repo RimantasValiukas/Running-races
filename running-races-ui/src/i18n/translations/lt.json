@@ -85,10 +85,15 @@
     "previous": "PRAĖJUSIOS VARŽYBOS"
   },
   "login": {
-    "signin": "Registruotis",
+    "signin": "Prisijungti",
     "email": "El. Paštas",
     "password": "Slaptažodis",
     "noAccount": "Neturite paskyros? Registruokitės",
-    "remember": "Prisiminti mane"
+    "remember": "Prisiminti mane",
+    "errorMessage": "Prisijungti nepavyko. Patikrinkite savo prisijungimo duomenis.",
+    "validation": {
+      "email": "El. paštas yra privalomas",
+      "password": "Slaptažodis yra privalomas"
+    }
   }
 }
