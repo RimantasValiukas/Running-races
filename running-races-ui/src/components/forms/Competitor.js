@@ -20,6 +20,8 @@ import FormInputs from "./FormInputs";
 import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
 import {useTranslation} from "react-i18next";
+import {useSelector} from "react-redux";
+import {parseISO} from "date-fns";
 
 const Competitor = () => {
 
@@ -28,6 +30,7 @@ const Competitor = () => {
     const [distances, setDistances] = useState([]);
     const [loading, setLoading] = useState(true);
     const {t} = useTranslation('competitor');
+    const user = useSelector(store => store.user.user);
     const [competitor, setCompetitor] = useState({
         name: '',
         surname: '',
@@ -35,7 +38,8 @@ const Competitor = () => {
         city: '',
         club: '',
         distance: '',
-        raceId: ''
+        raceId: '',
+        userId: ''
     });
 
     const competitorValidationScheme = Yup.object().shape(
@@ -48,6 +52,16 @@ const Competitor = () => {
         });
 
     useEffect(() => {
+        if (user) {
+            const userData = {
+                ...competitor,
+                name: user.name,
+                surname: user.surname,
+                dateOfBirth: parseISO(user.dateOfBirth)
+            }
+            setCompetitor(userData);
+        }
+
         getRaceById(raceId)
             .then(({data}) => setDistances(data.distances))
             .catch((error) => {
@@ -63,6 +77,7 @@ const Competitor = () => {
             ...values,
             dateOfBirth: timestamp,
             raceId: raceId,
+            userId: user.userId
         };
 
         createCompetitor(updatedValues)
