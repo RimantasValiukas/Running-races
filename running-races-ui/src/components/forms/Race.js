@@ -132,7 +132,6 @@ const Race = () => {
                                         onChange={(value) => props.setFieldValue("dateTime", value)}
                                         format="yyyy-MM-dd HH:mm:ss"
                                         onBlur={props.handleBlur("dateTime")}
-                                        error={props.touched.dateTime && !!props.errors.dateTime}
                                     />
                                     <ErrorMessage name="dateTime" component={FormHelperText}/>
                                 </LocalizationProvider>
