@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import LanguageSwitcher from "../switcher/LanguageSwitcher";
 import {useTranslation} from "react-i18next";
+import MenuBarItem from "./MenuBarItem";
 
 const Header = () => {
     const theme = useTheme();
@@ -82,7 +83,7 @@ const Header = () => {
                             <MenuItem component={NavLink} to="/races/create" sx={{ color: '#112D4E' }}>
                                 {t('create')}
                             </MenuItem>
-                            <MenuItem component={NavLink} to="/users/register" sx={{ color: '#112D4E' }}>
+                            <MenuItem component={NavLink} to="/registration" sx={{ color: '#112D4E' }}>
                                 {t('registration')}
                             </MenuItem>
                             <MenuItem component={NavLink} to="/login" sx={{ color: '#112D4E' }}>
@@ -93,20 +94,11 @@ const Header = () => {
                     </>
                 ) : (
                     <>
-                        <nav>
-                            <Link variant="button" color="text.primary" to="/" component={NavLink} sx={{ my: 1, mx: 1.5, color: '#F9F7F7', textDecoration: 'none'}}>
-                                {t('home')}
-                            </Link>
-                            <Link variant="button" color="text.primary" to="/races/previous" component={NavLink} sx={{ my: 1, mx: 1.5, color: '#F9F7F7', textDecoration: 'none' }}>
-                                {t('previous')}
-                            </Link>
-                            <Link variant="button" color="text.primary" to="/races/create" component={NavLink} sx={{ my: 1, mx: 1.5, color: '#F9F7F7', textDecoration: 'none' }}>
-                                {t('create')}
-                            </Link>
-                            <Link variant="button" color="text.primary" to="/users/register" component={NavLink} sx={{ my: 1, mx: 1.5, color: '#F9F7F7', textDecoration: 'none' }}>
-                                {t('registration')}
-                            </Link>
-                        </nav>
+                            <MenuBarItem path='/' name={t('home')} />
+                            <MenuBarItem path='/races/previous' name={t('previous')}/>
+                            <MenuBarItem path="/races/create" name={t('create')}/>
+                            <MenuBarItem path="/registration" name= {t('registration')}/>
+
                         <LanguageSwitcher/>
                         <Button to="/login" component={NavLink} variant="outlined" sx={{ my: 1, mx: 1.5, color: '#F9F7F7', borderColor: '#F9F7F7' }}>
                             {t('login')}
