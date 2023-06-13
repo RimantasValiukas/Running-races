@@ -9,31 +9,6 @@ import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import FormInputs from "./FormInputs";
 import Container from "@mui/material/Container";
 
-const userValidationSchema = Yup.object().shape(
-    {
-        username: Yup.string()
-            .min(5, 'Name must be longer than 5')
-            .max(10, 'Name must be shorter than 10')
-            .required('Name is required'),
-        surname: Yup.string()
-            .min(5, 'Surname must be longer than 5')
-            .max(10, 'Surname must be shorter than 10')
-            .required('Surname is required'),
-        name: Yup.string()
-            .required("Name is required"),
-        email: Yup.string()
-            .email()
-            .required('Email is required'),
-        phone: Yup.string()
-            .required('Phone is required'),
-        password: Yup.string()
-            .min(10, 'Password must contain at least 10 symbols...')
-            .required('Password is required'),
-        repeatPassword: Yup.string()
-            .oneOf([Yup.ref('password'), null], 'Passwords must match')
-            .required('Password is required')
-    }
-)
 const UserRegistration = () => {
 
     const [message, setMessage] = useState({isVisible: false});
@@ -49,6 +24,7 @@ const UserRegistration = () => {
         createUser(updatedValues)
             .then(() => {
                 setMessage({isVisible: true, message: t('successMessage'), severity: 'success'});
+                helper.resetForm();
             })
             .catch((error) => {
                 console.log('error ', error);
@@ -57,6 +33,27 @@ const UserRegistration = () => {
             .finally(() => helper.setSubmitting(false));
     }
 
+    const userValidationSchema = Yup.object().shape(
+        {
+            name: Yup.string()
+                .min(3, t('validation.name.min'))
+                .required(t('validation.name.required')),
+            surname: Yup.string()
+                .min(3, t('validation.surname.min'))
+                .required(t('validation.surname.required')),
+            email: Yup.string()
+                .email(t('validation.email.email'))
+                .required(t('validation.email.required')),
+            dateOfBirth: Yup.date()
+                .required(t('validation.dateOfBirth.required')),
+            password: Yup.string()
+                .min(10, t('validation.password.min'))
+                .required(t('validation.password.required')),
+            repeatPassword: Yup.string()
+                .oneOf([Yup.ref('password'), null], t('validation.repeatPassword.match'))
+                .required(t('validation.repeatPassword.required'))
+        }
+    )
 
     return (
         <Formik
@@ -96,7 +93,7 @@ const UserRegistration = () => {
                                     onChange={(value) => props.setFieldValue("dateOfBirth", value)}
                                     format="yyyy-MM-dd"
                                     onBlur={props.handleBlur("dateOfBirth")}
-                                    error={props.touched.dateOfBirth && !!props.errors.dateOfBirth}
+
                                 />
                                 <ErrorMessage name="dateOfBirth" component={FormHelperText}/>
                             </LocalizationProvider>

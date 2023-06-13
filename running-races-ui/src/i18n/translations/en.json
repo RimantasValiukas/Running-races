@@ -106,6 +106,31 @@
     "dateOfBirth": "Date of birth",
     "password": "Password",
     "repeatPassword": "Password confirmation",
-    "register": "Register"
+    "register": "Register",
+    "validation": {
+      "name": {
+        "min": "Name must be longer than 3",
+        "required": "Name is required"
+      },
+      "surname": {
+        "min": "Surname must be longer than 3",
+        "required": "Surname is required"
+      },
+      "email": {
+        "email": "Invalid email format",
+        "required": "Email is required"
+      },
+      "dateOfBirth": {
+        "required": "Date of birth is required"
+      },
+      "password": {
+        "min": "Password must contain at least 10 symbols...",
+        "required": "Password is required"
+      },
+      "repeatPassword": {
+        "match": "Passwords must match",
+        "required": "Password is required"
+      }
+    }
   }
 }

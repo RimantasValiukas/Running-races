@@ -95,5 +95,42 @@
       "email": "El. paštas yra privalomas",
       "password": "Slaptažodis yra privalomas"
     }
+  },
+  "registration": {
+    "successMessage" : "Sėkmingai užsiregistravote.",
+    "errorMessage": "Registracija nesėkminga.",
+    "userRegistration": "Vartotojo registracija",
+    "name": "Vardas",
+    "surname": "Pavardė",
+    "email": "El. paštas",
+    "dateOfBirth": "Gimimo data",
+    "password": "Slaptažodis",
+    "repeatPassword": "Pakartoti slaptažodį",
+    "register": "Registruotis",
+    "validation": {
+      "name": {
+        "min": "Vardas turi būti ilgesnis nei 3 raidės",
+        "required": "Vardas yra privalomas"
+      },
+      "surname": {
+        "min": "Pavardė turi būti ilgesnė nei 3 raidės",
+        "required": "Pavardė yra privaloma"
+      },
+      "email": {
+        "email": "Neteisingas el. pašto formatas",
+        "required": "El. paštas yra privalomas"
+      },
+      "dateOfBirth": {
+        "required": "Gimimo data yra privaloma"
+      },
+      "password": {
+        "min": "Slaptažodis turi būti netrumpesnis nei 10 simbolių",
+        "required": "Slaptažodis yra privalomas"
+      },
+      "repeatPassword": {
+        "match": "Slaptažodžiai turi sutapti",
+        "required": "Slaptažodis yra privalomas"
+      }
+    }
   }
 }
