@@ -21,6 +21,9 @@ import MenuBarItem from "./MenuBarItem";
 import {useDispatch, useSelector} from "react-redux";
 import {Logout, Settings} from "@mui/icons-material";
 import {removeUser} from "../../store/slices/userSlice";
+import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import LoginIcon from '@mui/icons-material/Login';
 
 const Header = () => {
     const theme = useTheme();
@@ -119,9 +122,12 @@ const Header = () => {
                             <MenuItem component={NavLink} to="/registration" sx={{color: '#112D4E'}}>
                                 {t('registration')}
                             </MenuItem>
+                            {user ?  <MenuItem onClick={onLogout} sx={{color: '#112D4E'}}>
+                                {t('logoutC')}
+                            </MenuItem> :
                             <MenuItem component={NavLink} to="/login" sx={{color: '#112D4E'}}>
                                 {t('login')}
-                            </MenuItem>
+                            </MenuItem>}
 
                         </Menu>
                     </>
@@ -130,7 +136,6 @@ const Header = () => {
                         <MenuBarItem path='/' name={t('home')}/>
                         <MenuBarItem path='/races/previous' name={t('previous')}/>
                         {user?.roles.includes('ADMIN') && <MenuBarItem path="/races/create" name={t('create')}/>}
-                        <MenuBarItem path="/registration" name={t('registration')}/>
 
                         <LanguageSwitcher/>
 
@@ -141,12 +146,11 @@ const Header = () => {
                                         <IconButton
                                             onClick={handleClick}
                                             size="small"
-                                            sx={{mx: 2}}
                                             aria-controls={open ? 'account-menu' : undefined}
                                             aria-haspopup="true"
                                             aria-expanded={open ? 'true' : undefined}
                                         >
-                                            <Avatar sx={{width: 32, height: 32}}></Avatar>
+                                            <AccountCircleIcon sx={{width: 32, height: 32, color: '#F9F7F7'}}/>
                                         </IconButton>
                                     </Tooltip>
                                     <Menu
@@ -202,13 +206,15 @@ const Header = () => {
                                     </Menu>
                                 </>
                                 :
-                                <Button to="/login" component={NavLink} variant="outlined"
-                                        sx={{my: 1, mx: 1.5, color: '#F9F7F7', borderColor: '#F9F7F7'}}>
-                                    {t('login')}
-                                </Button>
+                                <>
+                                <IconButton component={NavLink} to="/registration">
+                                    <PersonAddAlt1OutlinedIcon sx={{width: 32, height: 32, color: '#F9F7F7'}}/>
+                                </IconButton>
+                                <IconButton component={NavLink} to="/login">
+                                    <LoginIcon sx={{width: 32, height: 32, color: '#F9F7F7'}}/>
+                                </IconButton>
+                                </>
                         }
-
-
                     </>
                 )}
             </Toolbar>
