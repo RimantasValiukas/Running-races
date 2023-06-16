@@ -9,13 +9,14 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import {useEffect, useState} from "react";
 import {getCompetitorsByRaceId} from "../api/raceApi";
-import {useParams} from "react-router-dom";
-import {Alert, CircularProgress} from "@mui/material";
+import {NavLink, useParams} from "react-router-dom";
+import {Alert, Button, CircularProgress, Link} from "@mui/material";
 import {format, parseISO} from "date-fns";
 import Typography from "@mui/material/Typography";
 import {useTranslation} from "react-i18next";
+import {useSelector} from "react-redux";
 
-export default function Competitors() {
+export default function Competitors(props) {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [competitors, setCompetitors] = useState([]);
@@ -24,14 +25,42 @@ export default function Competitors() {
     const {raceId} = useParams();
     const [rows, setRows] = useState([]);
     const {t} = useTranslation('competitors');
+    const user = useSelector(state => state.user.user);
+    const {keyProp} = props;
+    const sortedCompetitors = competitors.sort((a, b) => a.result - b.result)
 
-    const columns = [
-        {id: 'name', label: t('name'), minWidth: 170},
-        {id: 'dateOfBirth', label: t('dateOfBirth'), minWidth: 170},
-        {id: 'city', label: t('city'), minWidth: 170},
-        {id: 'club', label: t('club'), minWidth: 170},
-        {id: 'distance', label: t('distance'), minWidth: 170},
-    ];
+    const getColumns = () => {
+        const runnersColumns = [
+            {id: 'name', label: t('name'), minWidth: 170},
+            {id: 'dateOfBirth', label: t('dateOfBirth'), minWidth: 170},
+            {id: 'city', label: t('city'), minWidth: 170},
+            {id: 'club', label: t('club'), minWidth: 170},
+            {id: 'distance', label: t('distance'), minWidth: 170},
+
+        ];
+        const resultsColumns = [
+            {id: 'name', label: t('name'), minWidth: 170},
+            {id: 'dateOfBirth', label: t('dateOfBirth'), minWidth: 170},
+            {id: 'city', label: t('city'), minWidth: 170},
+            {id: 'club', label: t('club'), minWidth: 170},
+            {id: 'distance', label: t('distance'), minWidth: 170},
+            {id: 'result',label: t('result'), minWidth: 170},
+            {id: 'place',label: t('place'), minWidth: 170}
+        ];
+
+        if (user && user.roles.includes('ADMIN')) {
+            runnersColumns.push({id: 'result',label: t('result'), minWidth: 170})
+        }
+
+        if (keyProp === "results") {
+            return resultsColumns;
+        } else {
+            return  runnersColumns;
+        }
+    }
+
+    const columns = getColumns();
+
 
     useEffect(() => {
         getCompetitorsByRaceId(raceId)
@@ -50,10 +79,14 @@ export default function Competitors() {
     }, []);
 
     useEffect(() => {
-        createData();
+        if (keyProp === "results") {
+            createDataForResults(sortedCompetitors);
+        } else {
+            createDataForCompetitors();
+        }
     }, [competitors]);
 
-    const createData = () => {
+    const createDataForCompetitors = () => {
         const rowsData = [];
         competitors.map((competitor) => {
             const name = `${competitor.name} ${competitor.surname}`;
@@ -61,8 +94,43 @@ export default function Competitors() {
             const city = competitor.city;
             const club = competitor.club;
             const distance = competitor.distance;
-            rowsData.push({name, dateOfBirth, city, club, distance})
+            const result = (
+                <Button
+                    size="small"
+                    to={`/competitors/${raceId}/${competitor.id}/result`}
+                    component={NavLink}
+                    sx={{ color: '#3F72AF' }}
+                >
+                    {t('addResult')}
+                </Button>);
+
+            if (user && user.roles.includes('ADMIN') && competitor.result == null) {
+                rowsData.push({name, dateOfBirth, city, club, distance, result})
+
+            } else {
+                rowsData.push({name, dateOfBirth, city, club, distance})
+            }
         })
+
+        setRows(rowsData);
+    }
+
+
+
+    const createDataForResults = (sortedCompetitors) => {
+        const rowsData = [];
+        sortedCompetitors.map((competitor, index) => {
+            const name = `${competitor.name} ${competitor.surname}`;
+            const dateOfBirth = format(parseISO(competitor.dateOfBirth), 'yyyy-MM-dd');
+            const city = competitor.city;
+            const club = competitor.club;
+            const distance = competitor.distance;
+            const result = format(parseISO(competitor.result), 'HH:mm:ss');
+            const place = index + 1;
+
+            rowsData.push({name, dateOfBirth, city, club, distance, result, place})
+        })
+
         setRows(rowsData);
     }
 
@@ -114,6 +182,7 @@ export default function Competitors() {
                                                             );
                                                         })}
                                                     </TableRow>
+
                                                 );
                                             })}
                                     </TableBody>

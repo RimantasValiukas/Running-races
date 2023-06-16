@@ -9,6 +9,7 @@ import {parseISO} from "date-fns";
 import Login from "../forms/Login";
 import UserRegistration from "../forms/UserRegistration";
 import SecuredRoute from "../security/SecuredRoute";
+import Result from "../forms/Result";
 
 const Content = () => {
 
@@ -28,7 +29,7 @@ const Content = () => {
         <Container maxWidth="xl">
             <Routes>
                 <Route path="/races/create" element={<SecuredRoute roles={['ADMIN']}/>}>
-                    <Route path="/races/create" element={<Race/>}/>
+                    <Route path="/races/create" element={<Race key="create"/>}/>
                 </Route>
                 <Route path="/" element={<Races filterFunction={filterUpcomingRaces} key="upcoming" keyProp="upcoming"/>}/>
                 <Route path="/races/previous" element={<Races filterFunction={filterPreviousRaces} key="previous" keyProp="previous"/>}/>
@@ -37,9 +38,13 @@ const Content = () => {
                     <Route path="/races/:raceId/update" element={<Race key="update"/>}/>
                 </Route>
                 <Route path="/competitors/:raceId/create" element={<Competitor/>}/>
-                <Route path="/competitors/:raceId" element={<Competitors/>}/>
+                <Route path="/competitors/:raceId" element={<Competitors key="runners" keyProp="runners"/>}/>
+                <Route path="/competitors/:raceId/results" element={<Competitors key="results" keyProp="results"/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/registration" element={<UserRegistration/>}/>
+                <Route path="/competitors/:raceId/:competitorId/result" element={<SecuredRoute roles={['ADMIN']}/>}>
+                    <Route path="/competitors/:raceId/:competitorId/result" element={<Result/>}/>
+                </Route>
             </Routes>
         </Container>
     );

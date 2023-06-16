@@ -17,7 +17,8 @@
     "description": "Description:",
     "titleConfirm": "Confirm Delete",
     "deleteConfirmation": "Are you sure you want to delete this race?",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "results": "Results"
   },
   "competitor": {
     "titleRegister": "Register for the race",
@@ -46,7 +47,10 @@
     "distance": "Distance (km)",
     "noCompetitorsMessage": "There are no registered competitors yet",
     "errorMessage": "Something goes wrong",
-    "rows": "Participants per page:"
+    "rows": "Participants per page:",
+    "addResult": "Add result",
+    "result": "Results",
+    "place": "Place"
   },
   "race": {
     "titleCreate": "Create race",
@@ -83,7 +87,8 @@
     "registration": "USER REGISTRATION",
     "login": "LOGIN",
     "previous": "PREVIOUS RACES",
-    "logout": "Logout"
+    "logout": "Logout",
+    "logoutC": "LOGOUT"
   },
   "login": {
     "signin": "Sign in",
@@ -133,5 +138,12 @@
         "required": "Password is required"
       }
     }
+  },
+  "result": {
+    "addResult": "Add result",
+    "result": "Result",
+    "submit": "Save",
+    "errorMessage": "Competitor cannot be found",
+    "errorMessageTwo": "Competitor cannot be updated"
   }
 }

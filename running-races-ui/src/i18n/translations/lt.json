@@ -17,7 +17,8 @@
     "description": "Aprašymas:",
     "titleConfirm": "Patvirtinkite ištrynimą",
     "deleteConfirmation": "Ar tikrai norite ištrinti šias varžybas?",
-    "cancel": "Atšaukti"
+    "cancel": "Atšaukti",
+    "results": "Rezultatai"
   },
   "competitor": {
     "titleRegister": "Varžybų registracija",
@@ -46,7 +47,10 @@
     "distance": "Distancija (km)",
     "noCompetitorsMessage": "Dar nėra registruotų dalyvių",
     "errorMessage": "Kažkas negerai",
-    "rows": "Dalyvių puslapyje:"
+    "rows": "Dalyvių puslapyje:",
+    "addResult": "Įvesti rezultatą",
+    "result": "Rezultatas",
+    "place": "Vieta"
   },
   "race": {
     "titleCreate": "Sukurti varžybas",
@@ -83,7 +87,8 @@
     "registration": "VARTOTOJO REGISTRACIJA",
     "login": "PRISIJUNGTI",
     "previous": "PRAĖJUSIOS VARŽYBOS",
-    "logout": "Atsijungti"
+    "logout": "Atsijungti",
+    "logoutC": "ATSIJUNGTI"
   },
   "login": {
     "signin": "Prisijungti",
@@ -133,5 +138,12 @@
         "required": "Slaptažodis yra privalomas"
       }
     }
+  },
+  "result": {
+    "addResult": "Įvesti rezultatą",
+    "result": "Rezultatas",
+    "submit": "Išsaugoti",
+    "errorMessage": "Dalyvis nerandamas",
+    "errorMessageTwo": "Dalyvio duomenys negali būti atnaujinti"
   }
 }

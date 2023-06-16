@@ -81,7 +81,7 @@ const Race = () => {
         };
 
         createRace(updatedValues)
-            .then((response) => {
+            .then(() => {
                 helper.resetForm();
                 setMessage({isVisible: true, message: t('successMessage'), severity: 'success'});
             })

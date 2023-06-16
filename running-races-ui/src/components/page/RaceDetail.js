@@ -24,13 +24,14 @@ const RaceDetail = () => {
     const [message, setMessage] = useState({isVisible: false});
     const {t} = useTranslation('raceDetail');
     const user = useSelector(store => store.user.user);
+    const isRaceDayPassed = new Date() < new Date(race.dateTime);
 
     useEffect(() => {
         getRaceById(raceId)
             .then(({data}) => setRace(data))
             .catch((error) => setMessage({isVisible: true, message: 'Race cannot be opened', severity: 'error'}))
             .finally(() => setLoading(false));
-    })
+    }, [])
 
     return (
         <>
@@ -57,18 +58,22 @@ const RaceDetail = () => {
                                     <Grid item xs={2}>{t('description')}</Grid>
                                     <Grid item xs={10}>{race.description}</Grid>
                                     <Grid item xs={12}>
-                                        <Button size="small"
-                                                to={`/competitors/${race.id}/create`}
-                                                component={NavLink}
-                                                sx={{color: '#3F72AF'}}>{t('register')}</Button>
-                                        <Button size="small"
-                                                to={`/competitors/${race.id}`}
-                                                component={NavLink}
-                                                sx={{color: '#3F72AF'}}>{t('competitors')}</Button>
+                                        {isRaceDayPassed && <Button size="small"
+                                                                    to={`/competitors/${race.id}/create`}
+                                                                    component={NavLink}
+                                                                    sx={{color: '#3F72AF'}}>{t('register')}</Button>}
+                                        {!isRaceDayPassed ? <Button size="small"
+                                                                   to={`/competitors/${race.id}/results`}
+                                                                   component={NavLink}
+                                                                   sx={{color: '#3F72AF'}}>{t('results')}</Button> :
+                                            <Button size="small"
+                                                    to={`/competitors/${race.id}`}
+                                                    component={NavLink}
+                                                    sx={{color: '#3F72AF'}}>{t('competitors')}</Button>}
                                         {user?.roles.includes('ADMIN') && <Button size="small"
-                                                 to={`/races/${race.id}/update`}
-                                                 component={NavLink}
-                                                 sx={{color: '#3F72AF'}}>{t('edit')}</Button>}
+                                                                                  to={`/races/${race.id}/update`}
+                                                                                  component={NavLink}
+                                                                                  sx={{color: '#3F72AF'}}>{t('edit')}</Button>}
                                         {user?.roles.includes('ADMIN') && <DeleteRace raceId={raceId}/>}
                                     </Grid>
                                 </Grid>
