@@ -30,10 +30,17 @@ public class CompetitorController {
         return competitorService.getCompetitorsByRaceId(raceId);
     }
 
-//    @GetMapping(value = "/{competitorId}", produces = MediaType.APPLICATION_JSON_VALUE)
-//    public Competitor getCompetitorById(@PathVariable UUID competitorId) {
-//        return competitorService.getCompetitor(competitorId);
-//    }
+    @GetMapping(value = "/{competitorId}/result", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Competitor getCompetitorById(@PathVariable UUID competitorId) {
+        return competitorService.getCompetitor(competitorId);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping(value = "/{competitorId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public void updateCompetitor(@RequestBody Competitor competitor, @PathVariable("competitorId") UUID competitorId) {
+        competitor.setId(competitorId);
+        competitorService.saveCompetitor(competitor);
+    }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
