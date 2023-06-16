@@ -1,6 +1,7 @@
 package lt.code.academy.runningracesapi.races.service;
 
 import lt.code.academy.runningracesapi.races.dto.Race;
+import lt.code.academy.runningracesapi.races.entity.CompetitorEntity;
 import lt.code.academy.runningracesapi.races.entity.RaceEntity;
 import lt.code.academy.runningracesapi.races.exception.RaceNotExistRuntimeException;
 import lt.code.academy.runningracesapi.races.repository.RaceRepository;
@@ -38,5 +39,4 @@ public class RaceService {
     public void deleteRace(UUID raceId) {
         raceRepository.deleteById(raceId);
     }
-
 }

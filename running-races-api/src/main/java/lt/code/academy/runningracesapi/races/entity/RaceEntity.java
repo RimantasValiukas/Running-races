@@ -40,7 +40,7 @@ public class RaceEntity {
     @CollectionTable(name = "distances",joinColumns = @JoinColumn(name = "raceId"))
     @Column(name = "distance", nullable = false)
     private List<Double> distances;
-    @OneToMany(mappedBy = "raceEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "raceEntity", cascade = CascadeType.ALL)
     private List<CompetitorEntity> competitors;
 
     public static RaceEntity convert(Race race) {
