@@ -48,6 +48,14 @@ public class CompetitorService {
                .toList();
     }
 
+    public List<Competitor> getCompetitorsByUserId(UUID userid) {
+        return competitorRepository
+                .findCompetitorEntitiesByUserId(userid)
+                .stream()
+                .map(Competitor::convert)
+                .toList();
+    }
+
     public void deleteCompetitor(UUID competitorId) {
         competitorRepository.deleteById(competitorId);
     }

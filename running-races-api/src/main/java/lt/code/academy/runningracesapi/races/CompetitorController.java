@@ -48,6 +48,12 @@ public class CompetitorController {
         competitorService.saveCompetitor(competitor);
     }
 
+
+    @GetMapping(value ="/{userId}/races", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Competitor> getCompetitorsByUserId(@PathVariable UUID userId) {
+       return competitorService.getCompetitorsByUserId(userId);
+    }
+
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping(value = "/{competitorId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

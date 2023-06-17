@@ -8,4 +8,5 @@ import java.util.UUID;
 
 public interface CompetitorRepository extends JpaRepository<CompetitorEntity, UUID> {
     List<CompetitorEntity> findCompetitorEntitiesByRaceId(UUID raceId);
+    List<CompetitorEntity> findCompetitorEntitiesByUserId(UUID userId);
 }
