@@ -48,9 +48,10 @@
     "noCompetitorsMessage": "There are no registered competitors yet",
     "errorMessage": "Something goes wrong",
     "rows": "Participants per page:",
-    "addResult": "Add result",
+    "addResult": "Add/edit result",
     "result": "Results",
-    "place": "Place"
+    "place": "Place",
+    "noResult": "No result"
   },
   "race": {
     "titleCreate": "Create race",

@@ -27,46 +27,44 @@ export default function Competitors(props) {
     const {t} = useTranslation('competitors');
     const user = useSelector(state => state.user.user);
     const {keyProp} = props;
-    const sortedCompetitors = competitors.sort((a, b) => a.result - b.result)
 
     const getColumns = () => {
         const runnersColumns = [
-            {id: 'name', label: t('name'), minWidth: 170},
-            {id: 'dateOfBirth', label: t('dateOfBirth'), minWidth: 170},
-            {id: 'city', label: t('city'), minWidth: 170},
-            {id: 'club', label: t('club'), minWidth: 170},
-            {id: 'distance', label: t('distance'), minWidth: 170},
+            {id: 'name', label: t('name'), minWidth: 150},
+            {id: 'dateOfBirth', label: t('dateOfBirth'), minWidth: 150},
+            {id: 'city', label: t('city'), minWidth: 150},
+            {id: 'club', label: t('club'), minWidth: 150},
+            {id: 'distance', label: t('distance'), minWidth: 100},
 
         ];
         const resultsColumns = [
-            {id: 'name', label: t('name'), minWidth: 170},
-            {id: 'dateOfBirth', label: t('dateOfBirth'), minWidth: 170},
-            {id: 'city', label: t('city'), minWidth: 170},
-            {id: 'club', label: t('club'), minWidth: 170},
-            {id: 'distance', label: t('distance'), minWidth: 170},
-            {id: 'result',label: t('result'), minWidth: 170},
-            {id: 'place',label: t('place'), minWidth: 170}
+            {id: 'name', label: t('name'), minWidth: 150},
+            {id: 'dateOfBirth', label: t('dateOfBirth'), minWidth: 150},
+            {id: 'city', label: t('city'), minWidth: 150},
+            {id: 'club', label: t('club'), minWidth: 150},
+            {id: 'distance', label: t('distance'), minWidth: 100},
+            {id: 'result', label: t('result'), minWidth: 150},
         ];
 
-        if (user && user.roles.includes('ADMIN')) {
-            runnersColumns.push({id: 'result',label: t('result'), minWidth: 170})
+        if (user && user.roles.includes('ADMIN') && keyProp === "results") {
+            resultsColumns.push({id: 'button', minWidth: 150})
         }
 
         if (keyProp === "results") {
             return resultsColumns;
         } else {
-            return  runnersColumns;
+            return runnersColumns;
         }
     }
 
     const columns = getColumns();
 
-
     useEffect(() => {
         getCompetitorsByRaceId(raceId)
             .then(({data}) => {
                 if (data.length > 0) {
-                    setCompetitors(data);
+                    const sortedCompetitors = data.sort((a, b) => a.result - b.result);
+                    setCompetitors(sortedCompetitors);
                 } else {
                     setMessage({isVisible: true, message: t('noCompetitorsMessage'), severity: 'info'})
                 }
@@ -80,7 +78,7 @@ export default function Competitors(props) {
 
     useEffect(() => {
         if (keyProp === "results") {
-            createDataForResults(sortedCompetitors);
+            createDataForResults();
         } else {
             createDataForCompetitors();
         }
@@ -94,41 +92,45 @@ export default function Competitors(props) {
             const city = competitor.city;
             const club = competitor.club;
             const distance = competitor.distance;
-            const result = (
-                <Button
-                    size="small"
-                    to={`/competitors/${raceId}/${competitor.id}/result`}
-                    component={NavLink}
-                    sx={{ color: '#3F72AF' }}
-                >
-                    {t('addResult')}
-                </Button>);
 
-            if (user && user.roles.includes('ADMIN') && competitor.result == null) {
-                rowsData.push({name, dateOfBirth, city, club, distance, result})
-
-            } else {
-                rowsData.push({name, dateOfBirth, city, club, distance})
-            }
+            rowsData.push({name, dateOfBirth, city, club, distance})
         })
 
         setRows(rowsData);
     }
 
+    const parseResult = (result) => {
+        if (result) {
+            return format(parseISO(result), 'HH:mm:ss');
+        } else {
+            return t('noResult');
+        }
+    }
 
-
-    const createDataForResults = (sortedCompetitors) => {
+    const createDataForResults = () => {
         const rowsData = [];
-        sortedCompetitors.map((competitor, index) => {
+        competitors.map((competitor, index) => {
             const name = `${competitor.name} ${competitor.surname}`;
             const dateOfBirth = format(parseISO(competitor.dateOfBirth), 'yyyy-MM-dd');
             const city = competitor.city;
             const club = competitor.club;
             const distance = competitor.distance;
-            const result = format(parseISO(competitor.result), 'HH:mm:ss');
-            const place = index + 1;
+            const result = parseResult(competitor.result);
+            const button = (
+                <Button
+                    size="small"
+                    to={`/competitors/${raceId}/${competitor.id}/result`}
+                    component={NavLink}
+                    sx={{color: '#3F72AF'}}
+                >
+                    {t('addResult')}
+                </Button>);
+            if (user && user.roles.includes('ADMIN')) {
+                rowsData.push({name, dateOfBirth, city, club, distance, result, button})
 
-            rowsData.push({name, dateOfBirth, city, club, distance, result, place})
+            } else {
+                rowsData.push({name, dateOfBirth, city, club, distance, result})
+            }
         })
 
         setRows(rowsData);

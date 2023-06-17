@@ -48,9 +48,10 @@
     "noCompetitorsMessage": "Dar nėra registruotų dalyvių",
     "errorMessage": "Kažkas negerai",
     "rows": "Dalyvių puslapyje:",
-    "addResult": "Įvesti rezultatą",
+    "addResult": "Įvesti/keisti rezultatą",
     "result": "Rezultatas",
-    "place": "Vieta"
+    "place": "Vieta",
+    "noResult": "Nėra rezultato"
   },
   "race": {
     "titleCreate": "Sukurti varžybas",
