@@ -119,9 +119,9 @@ const Header = () => {
                             {user?.roles.includes('ADMIN') && <MenuItem component={NavLink} to="/races/create" sx={{color: '#112D4E'}}>
                                 {t('create')}
                             </MenuItem>}
-                            <MenuItem component={NavLink} to="/registration" sx={{color: '#112D4E'}}>
+                            {!user && <MenuItem component={NavLink} to="/registration" sx={{color: '#112D4E'}}>
                                 {t('registration')}
-                            </MenuItem>
+                            </MenuItem>}
                             {user ?  <MenuItem onClick={onLogout} sx={{color: '#112D4E'}}>
                                 {t('logoutC')}
                             </MenuItem> :
@@ -191,12 +191,6 @@ const Header = () => {
                                             <Avatar/> {user.fullName}
                                         </MenuItem>
                                         <Divider/>
-                                        <MenuItem onClick={handleClose}>
-                                            <ListItemIcon>
-                                                <Settings fontSize="small"/>
-                                            </ListItemIcon>
-                                            Settings
-                                        </MenuItem>
                                         <MenuItem onClick={onLogout}>
                                             <ListItemIcon>
                                                 <Logout fontSize="small"/>
