@@ -106,7 +106,9 @@
   "registration": {
     "successMessage" : "Sėkmingai užsiregistravote.",
     "errorMessage": "Registracija nesėkminga.",
+    "errorMessageUp": "Vartotojas nerandamas.",
     "userRegistration": "Vartotojo registracija",
+    "userEdit": "Keisti vartotojo duomenis",
     "name": "Vardas",
     "surname": "Pavardė",
     "email": "El. paštas",
@@ -114,6 +116,7 @@
     "password": "Slaptažodis",
     "repeatPassword": "Pakartoti slaptažodį",
     "register": "Registruotis",
+    "update": "Atnaujinti",
     "validation": {
       "name": {
         "min": "Vardas turi būti ilgesnis nei 3 raidės",

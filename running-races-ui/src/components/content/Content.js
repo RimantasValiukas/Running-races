@@ -42,7 +42,7 @@ const Content = () => {
                 <Route path="/competitors/:raceId" element={<Competitors key="runners" keyProp="runners"/>}/>
                 <Route path="/competitors/:raceId/results" element={<Competitors key="results" keyProp="results"/>}/>
                 <Route path="/login" element={<Login/>}/>
-                <Route path="/registration" element={<UserRegistration/>}/>
+                <Route path="/registration" element={<UserRegistration key="registration"/>}/>
                 <Route path="/competitors/:raceId/:competitorId/result" element={<SecuredRoute roles={['ADMIN']}/>}>
                     <Route path="/competitors/:raceId/:competitorId/result" element={<Result/>}/>
                 </Route>

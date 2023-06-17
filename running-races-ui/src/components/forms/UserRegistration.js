@@ -1,18 +1,29 @@
 import * as Yup from 'yup';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {ErrorMessage, Form, Formik} from "formik";
-import {createUser} from "../api/userApi";
+import {createUser, getUser} from "../api/userApi";
 import {Alert, Button, CircularProgress, FormHelperText, Stack, Typography} from "@mui/material";
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
 import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import FormInputs from "./FormInputs";
 import Container from "@mui/material/Container";
+import {useParams} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const UserRegistration = () => {
 
     const [message, setMessage] = useState({isVisible: false});
     const {t} = useTranslation('registration');
+    const [loading, setLoading] = useState(true);
+    const [user, setUser] = useState({
+        name: '',
+        surname: '',
+        email: '',
+        dateOfBirth: null,
+        password: '',
+        repeatPassword: ''
+    })
 
     const onCreateUser = (values, helper) => {
         const timestamp = new Date(values.dateOfBirth).getTime();
@@ -56,15 +67,9 @@ const UserRegistration = () => {
     )
 
     return (
+
         <Formik
-            initialValues={{
-                name: '',
-                surname: '',
-                email: '',
-                dateOfBirth: null,
-                password: '',
-                repeatPassword: ''
-            }}
+            initialValues={user}
 
             onSubmit={onCreateUser}
 

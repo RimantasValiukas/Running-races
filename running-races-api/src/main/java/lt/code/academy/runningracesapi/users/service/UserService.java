@@ -1,5 +1,6 @@
 package lt.code.academy.runningracesapi.users.service;
 
+import lt.code.academy.runningracesapi.users.exceptions.UserNotFoundRuntimeException;
 import lt.code.academy.runningracesapi.users.dto.User;
 import lt.code.academy.runningracesapi.users.entity.UserEntity;
 import lt.code.academy.runningracesapi.users.repository.UserRepository;
@@ -8,9 +9,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -22,22 +20,15 @@ public class UserService implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
-    public void createUser(User user) {
+    public void saveUser(User user) {
         userRepository.save(UserEntity.convert(user));
     }
 
-    public Map<UUID,User> getAllUsers() {
-        Map<UUID, User> usersMap = new HashMap<>();
-        List<User> users = userRepository.findAll()
-                .stream()
+    public User getUserById(UUID userId) {
+        return userRepository
+                .findById(userId)
                 .map(User::convert)
-                .toList();
-
-        for (User user: users) {
-            usersMap.put(user.getId(), user);
-        }
-
-        return usersMap;
+                .orElseThrow(() -> new UserNotFoundRuntimeException(userId));
     }
 
     @Override

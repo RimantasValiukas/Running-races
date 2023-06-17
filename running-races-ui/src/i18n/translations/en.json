@@ -106,7 +106,9 @@
   "registration": {
     "successMessage" : "You have successfully registered, please sign in.",
     "errorMessage": "Registration failed",
+    "errorMessageUp": "Can not find user",
     "userRegistration": "User registration",
+    "userEdit": "Edit user data",
     "name": "Name",
     "surname": "Surname",
     "email": "Email",
@@ -114,6 +116,7 @@
     "password": "Password",
     "repeatPassword": "Password confirmation",
     "register": "Register",
+    "update": "Update",
     "validation": {
       "name": {
         "min": "Name must be longer than 3",

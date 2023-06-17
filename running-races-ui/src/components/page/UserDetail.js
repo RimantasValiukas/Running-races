@@ -98,12 +98,6 @@ const UserDetail = () => {
                                     <Grid item xs={8} sm={9}>{user.username}</Grid>
                                     <Grid item xs={4} sm={3}>{t('dateOfBirth')}</Grid>
                                     <Grid item xs={8} sm={9}>{format(parseISO(user.dateOfBirth), 'yyyy-MM-dd')}</Grid>
-                                    <Grid item xs={12}>
-                                        <Button size="small"
-                                                to={`/registration`}
-                                                component={NavLink}
-                                                sx={{color: '#3F72AF'}}>{t('change')}</Button>
-                                    </Grid>
                                 </Grid>
                                 <Typography variant="h5" align="left" sx={{mt: '30px'}}>{t('races')}</Typography>
                                 {rows ? <TableContainer component={Paper} sx={{mt: '30px'}}>
