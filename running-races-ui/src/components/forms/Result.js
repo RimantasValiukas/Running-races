@@ -8,6 +8,7 @@ import {LocalizationProvider, TimeField} from "@mui/x-date-pickers";
 import {useNavigate, useParams} from "react-router-dom";
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
 import {getCompetitor, updateCompetitor} from "../api/raceApi";
+import {format, parseISO} from "date-fns";
 
 const Result = () => {
 
@@ -31,10 +32,9 @@ const Result = () => {
                 setMessage({isVisible: true, message: t('errorMessage'), severity:'error'})
             })
             .finally(() => setLoading(false));
-    }, [])
+    }, []);
 
     const onAddResult = (values, helper) => {
-        console.log(values.result)
         const timeResult = new Date(values.result);
         timeResult.setFullYear(1970,0,1);
         competitor.result = timeResult;
@@ -42,7 +42,7 @@ const Result = () => {
         updateCompetitor(competitor, competitorId)
             .then(() => {
                 helper.resetForm();
-                navigation(`/competitors/${competitor.raceId}`);
+                navigation(`/competitors/${competitor.raceId}/results`);
             })
             .catch((error) => {
                 console.log('error', error);
