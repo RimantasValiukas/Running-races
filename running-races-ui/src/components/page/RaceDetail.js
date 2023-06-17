@@ -40,23 +40,23 @@ const RaceDetail = () => {
                     <Container maxWidth="lg" sx={{marginTop: '90px'}}>
                         {message.isVisible && <Alert severity={message.severity}>{message.message}</Alert>}
                         <Grid container spacing={2}>
-                            <Grid item xs={5}>
+                            <Grid item xs={12} md={5}>
                                 <ImageListItem>
                                     <img
                                         src={race.imageURL}/>
                                 </ImageListItem>
                             </Grid>
-                            <Grid item xs={7}>
+                            <Grid item xs={12} md={7}>
                                 <Typography variant="h5" align="center">{race.name}</Typography>
                                 <Grid container spacing={2} sx={{mt: 2, ml: 1}}>
-                                    <Grid item xs={2}>{t('organizer')}</Grid>
-                                    <Grid item xs={10}>{race.organizer}</Grid>
-                                    <Grid item xs={2}>{t('dateTime')}</Grid>
-                                    <Grid item xs={10}>{format(parseISO(race.dateTime), 'yyyy-MM-dd hh:mm')}</Grid>
-                                    <Grid item xs={2}>{t('address')}</Grid>
-                                    <Grid item xs={10}>{race.address}</Grid>
-                                    <Grid item xs={2}>{t('description')}</Grid>
-                                    <Grid item xs={10}>{race.description}</Grid>
+                                    <Grid item xs={4} sm={3}>{t('organizer')}</Grid>
+                                    <Grid item xs={8} sm={9}>{race.organizer}</Grid>
+                                    <Grid item xs={4} sm={3}>{t('dateTime')}</Grid>
+                                    <Grid item xs={8} sm={9}>{format(parseISO(race.dateTime), 'yyyy-MM-dd hh:mm')}</Grid>
+                                    <Grid item xs={4} sm={3}>{t('address')}</Grid>
+                                    <Grid item xs={8} sm={9}>{race.address}</Grid>
+                                    <Grid item xs={4} sm={3}>{t('description')}</Grid>
+                                    <Grid item xs={8} sm={9}>{race.description}</Grid>
                                     <Grid item xs={12}>
                                         {isRaceDayPassed && <Button size="small"
                                                                     to={`/competitors/${race.id}/create`}
