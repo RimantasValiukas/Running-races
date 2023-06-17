@@ -73,11 +73,15 @@ const Competitor = () => {
 
     const onRegisterCompetitor = (values, helper) => {
         const timestamp = new Date(values.dateOfBirth).getTime();
+        let userId = null;
+        if(user) {
+            userId = user.userId;
+        }
         const updatedValues = {
             ...values,
             dateOfBirth: timestamp,
             raceId: raceId,
-            userId: user.userId
+            userId: userId
         };
 
         createCompetitor(updatedValues)

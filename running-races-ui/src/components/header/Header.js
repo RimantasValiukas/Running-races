@@ -187,7 +187,7 @@ const Header = () => {
                                         }}
                                         transformOrigin={{horizontal: 'right', vertical: 'top'}}
                                         anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}>
-                                        <MenuItem>
+                                        <MenuItem component={NavLink} to={`/user/${user.userId}`}>
                                             <Avatar/> {user.fullName}
                                         </MenuItem>
                                         <Divider/>

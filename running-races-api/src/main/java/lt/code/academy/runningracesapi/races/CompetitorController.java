@@ -48,7 +48,7 @@ public class CompetitorController {
         competitorService.saveCompetitor(competitor);
     }
 
-
+    @PreAuthorize("hasRole('USER')")
     @GetMapping(value ="/{userId}/races", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Competitor> getCompetitorsByUserId(@PathVariable UUID userId) {
        return competitorService.getCompetitorsByUserId(userId);

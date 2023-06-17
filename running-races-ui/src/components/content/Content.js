@@ -10,6 +10,7 @@ import Login from "../forms/Login";
 import UserRegistration from "../forms/UserRegistration";
 import SecuredRoute from "../security/SecuredRoute";
 import Result from "../forms/Result";
+import UserDetail from "../page/UserDetail";
 
 const Content = () => {
 
@@ -44,6 +45,9 @@ const Content = () => {
                 <Route path="/registration" element={<UserRegistration/>}/>
                 <Route path="/competitors/:raceId/:competitorId/result" element={<SecuredRoute roles={['ADMIN']}/>}>
                     <Route path="/competitors/:raceId/:competitorId/result" element={<Result/>}/>
+                </Route>
+                <Route path="/user/:userId" element={<SecuredRoute roles={['USER']}/>}>
+                    <Route path="/user/:userId" element={<UserDetail/>}/>
                 </Route>
             </Routes>
         </Container>

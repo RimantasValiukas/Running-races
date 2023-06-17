@@ -146,5 +146,22 @@
     "submit": "Save",
     "errorMessage": "Competitor cannot be found",
     "errorMessageTwo": "Competitor cannot be updated"
+  },
+  "userDetail" : {
+    "information": "Information about user: ",
+    "name": "Name:",
+    "surname": "Surname:",
+    "email": "Email:",
+    "dateOfBirth": "Date of birth:",
+    "change": "Change data",
+    "races": "Participated in the races: ",
+    "raceName": "Race name",
+    "date": "Race date",
+    "distance": "Distance",
+    "result": "Result",
+    "errorMessage": "Cannot find",
+    "noResult": "No result",
+    "message": "You have not participated in the race yet"
+
   }
 }

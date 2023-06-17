@@ -146,5 +146,23 @@
     "submit": "Išsaugoti",
     "errorMessage": "Dalyvis nerandamas",
     "errorMessageTwo": "Dalyvio duomenys negali būti atnaujinti"
+  },
+  "userDetail" : {
+    "information": "Informacija apie vartotoją: ",
+    "name": "Vardas:",
+    "surname": "Pavardė:",
+    "email": "El. paštas:",
+    "dateOfBirth": "Gimimo data:",
+    "change": "Keisti duomenis",
+    "races": "Dalyvavo varžybose: ",
+    "errorMessage": "Cannot find",
+    "noResult": "Rezultato nėra",
+    "raceName": "Varžybų pavadinimas",
+    "date": "Varžybų data",
+    "distance": "Distancija",
+    "result": "Rezultatas",
+    "errorMessage": "Nerandama",
+    "noResult": "Rezultato nėra",
+    "message" : "Varžybose dar nedalyvavote"
   }
 }
