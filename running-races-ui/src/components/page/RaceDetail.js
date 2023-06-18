@@ -43,40 +43,43 @@ const RaceDetail = () => {
                             <Grid item xs={12} md={5}>
                                 <ImageListItem>
                                     <img
-                                        src={race.imageURL}/>
+                                        src={race.imageURL ? race.imageURL : 'https://as2.ftcdn.net/v2/jpg/00/38/13/73/1000_F_38137330_gUbR3ZXBc5J5g4pRkaC8TYZQA62OZhx5.jpg'}/>
                                 </ImageListItem>
                             </Grid>
                             <Grid item xs={12} md={7}>
                                 <Typography variant="h5" align="center">{race.name}</Typography>
-                                <Grid container spacing={2} sx={{mt: 2, ml: 1}}>
-                                    <Grid item xs={4} sm={3}>{t('organizer')}</Grid>
-                                    <Grid item xs={8} sm={9}>{race.organizer}</Grid>
-                                    <Grid item xs={4} sm={3}>{t('dateTime')}</Grid>
-                                    <Grid item xs={8} sm={9}>{format(parseISO(race.dateTime), 'yyyy-MM-dd hh:mm')}</Grid>
-                                    <Grid item xs={4} sm={3}>{t('address')}</Grid>
-                                    <Grid item xs={8} sm={9}>{race.address}</Grid>
-                                    <Grid item xs={4} sm={3}>{t('description')}</Grid>
-                                    <Grid item xs={8} sm={9}>{race.description}</Grid>
-                                    <Grid item xs={12}>
-                                        {isRaceDayPassed && <Button size="small"
-                                                                    to={`/competitors/${race.id}/create`}
-                                                                    component={NavLink}
-                                                                    sx={{color: '#3F72AF'}}>{t('register')}</Button>}
-                                        {!isRaceDayPassed ? <Button size="small"
-                                                                   to={`/competitors/${race.id}/results`}
-                                                                   component={NavLink}
-                                                                   sx={{color: '#3F72AF'}}>{t('results')}</Button> :
-                                            <Button size="small"
-                                                    to={`/competitors/${race.id}`}
-                                                    component={NavLink}
-                                                    sx={{color: '#3F72AF'}}>{t('competitors')}</Button>}
-                                        {user?.roles.includes('ADMIN') && <Button size="small"
-                                                                                  to={`/races/${race.id}/update`}
-                                                                                  component={NavLink}
-                                                                                  sx={{color: '#3F72AF'}}>{t('edit')}</Button>}
-                                        {user?.roles.includes('ADMIN') && <DeleteRace raceId={raceId}/>}
+                                <Typography>
+                                    <Grid container spacing={2} sx={{mt: 2, ml: 1}}>
+                                        <Grid item xs={4} sm={3}>{t('organizer')}</Grid>
+                                        <Grid item xs={8} sm={9}>{race.organizer}</Grid>
+                                        <Grid item xs={4} sm={3}>{t('dateTime')}</Grid>
+                                        <Grid item xs={8}
+                                              sm={9}>{format(parseISO(race.dateTime), 'yyyy-MM-dd HH:mm')} </Grid>
+                                        <Grid item xs={4} sm={3}>{t('address')}</Grid>
+                                        <Grid item xs={8} sm={9}>{race.address}</Grid>
+                                        <Grid item xs={4} sm={3}>{t('description')}</Grid>
+                                        <Grid item xs={8} sm={9} sx={{textAlign: 'justify'}}>{race.description}</Grid>
+                                        <Grid item xs={12}>
+                                            {isRaceDayPassed && <Button size="small"
+                                                                        to={`/competitors/${race.id}/create`}
+                                                                        component={NavLink}
+                                                                        sx={{color: '#3F72AF'}}>{t('register')}</Button>}
+                                            {!isRaceDayPassed ? <Button size="small"
+                                                                        to={`/competitors/${race.id}/results`}
+                                                                        component={NavLink}
+                                                                        sx={{color: '#3F72AF'}}>{t('results')}</Button> :
+                                                <Button size="small"
+                                                        to={`/competitors/${race.id}`}
+                                                        component={NavLink}
+                                                        sx={{color: '#3F72AF'}}>{t('competitors')}</Button>}
+                                            {user?.roles.includes('ADMIN') && <Button size="small"
+                                                                                      to={`/races/${race.id}/update`}
+                                                                                      component={NavLink}
+                                                                                      sx={{color: '#3F72AF'}}>{t('edit')}</Button>}
+                                            {user?.roles.includes('ADMIN') && <DeleteRace raceId={raceId}/>}
+                                        </Grid>
                                     </Grid>
-                                </Grid>
+                                </Typography>
                             </Grid>
                         </Grid>
                     </Container>

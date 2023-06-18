@@ -133,7 +133,8 @@ export default function Competitors(props) {
             }
         })
 
-        setRows(rowsData);
+        const sortedRows = rowsData.sort((a, b) => new Date(`1970-01-01T${a.result}`) - new Date(`1970-01-01T${b.result}`));
+        setRows(sortedRows);
     }
 
     const handleChangePage = (event, newPage) => {
@@ -150,7 +151,7 @@ export default function Competitors(props) {
             {message.isVisible ? <Alert severity={message.severity} sx={{mt: '90px'}}>{message.message}</Alert> :
                 loading ? <CircularProgress/> :
                     <>
-                        <Typography variant="h5" sx={{mt: '90px'}}>{t('title')}</Typography>
+                        <Typography variant="h5" sx={{mt: '90px'}}>{keyProp === 'results' ? t('raceResults') : t('title')}</Typography>
                         <Paper sx={{width: '100%', overflow: 'hidden', mt: '20px'}}>
                             <TableContainer sx={{maxHeight: 440}}>
                                 <Table stickyHeader aria-label="sticky table">

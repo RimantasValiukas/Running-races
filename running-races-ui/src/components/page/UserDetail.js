@@ -34,7 +34,7 @@ const UserDetail = () => {
                 setMessage({isVisible: true, message: t('errorMessage'), severity: 'error'})
             })
             .finally()
-            }, []);
+    }, []);
 
     useEffect(() => {
         getRaces()
@@ -72,7 +72,7 @@ const UserDetail = () => {
             const distance = competitor.distance;
             const result = parseResult(competitor.result);
 
-            return { raceName, date, distance, result };
+            return {raceName, date, distance, result};
         });
 
         const sortedRows = rowsData.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -80,7 +80,7 @@ const UserDetail = () => {
     }
 
 
-    return(
+    return (
         <>
             {
                 loading ? <CircularProgress sx={{mt: '90px'}}/> :
@@ -89,44 +89,47 @@ const UserDetail = () => {
                         <Grid container spacing={2}>
                             <Grid item xs={12} md={7}>
                                 <Typography variant="h5" align="left">{t('information')} {user.fullName}</Typography>
-                                <Grid container spacing={2} sx={{mt: 2, ml: 1}}>
-                                    <Grid item xs={4} sm={3}>{t('name')}</Grid>
-                                    <Grid item xs={8} sm={9}>{user.name}</Grid>
-                                    <Grid item xs={4} sm={3}>{t('surname')}</Grid>
-                                    <Grid item xs={8} sm={9}>{user.surname}</Grid>
-                                    <Grid item xs={4} sm={3}>{t('email')}</Grid>
-                                    <Grid item xs={8} sm={9}>{user.username}</Grid>
-                                    <Grid item xs={4} sm={3}>{t('dateOfBirth')}</Grid>
-                                    <Grid item xs={8} sm={9}>{format(parseISO(user.dateOfBirth), 'yyyy-MM-dd')}</Grid>
-                                </Grid>
+                                <Typography>
+                                    <Grid container spacing={2} sx={{mt: 2, ml: 1}}>
+                                        <Grid item xs={4} sm={3}>{t('name')}</Grid>
+                                        <Grid item xs={8} sm={9}>{user.name}</Grid>
+                                        <Grid item xs={4} sm={3}>{t('surname')}</Grid>
+                                        <Grid item xs={8} sm={9}>{user.surname}</Grid>
+                                        <Grid item xs={4} sm={3}>{t('email')}</Grid>
+                                        <Grid item xs={8} sm={9}>{user.username}</Grid>
+                                        <Grid item xs={4} sm={3}>{t('dateOfBirth')}</Grid>
+                                        <Grid item xs={8}
+                                              sm={9}>{format(parseISO(user.dateOfBirth), 'yyyy-MM-dd')}</Grid>
+                                    </Grid>
+                                </Typography>
                                 <Typography variant="h5" align="left" sx={{mt: '30px'}}>{t('races')}</Typography>
                                 {rows ? <TableContainer component={Paper} sx={{mt: '30px'}}>
-                                    <Table sx={{minWidth: 650}} aria-label="simple table">
-                                        <TableHead>
-                                            <TableRow>
-                                                <TableCell>{t('raceName')}</TableCell>
-                                                <TableCell align="right">{t('date')}</TableCell>
-                                                <TableCell align="right">{t('distance')}</TableCell>
-                                                <TableCell align="right">{t('result')}</TableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                        <TableBody>
-                                            {rows.map((row) => (
-                                                <TableRow
-                                                    key={row.raceName}
-                                                    sx={{'&:last-child td, &:last-child th': {border: 0}}}
-                                                >
-                                                    <TableCell component="th" scope="row">
-                                                        {row.raceName}
-                                                    </TableCell>
-                                                    <TableCell align="right">{row.date}</TableCell>
-                                                    <TableCell align="right">{row.distance}</TableCell>
-                                                    <TableCell align="right">{row.result}</TableCell>
+                                        <Table sx={{minWidth: 650}} aria-label="simple table">
+                                            <TableHead>
+                                                <TableRow>
+                                                    <TableCell>{t('raceName')}</TableCell>
+                                                    <TableCell align="right">{t('date')}</TableCell>
+                                                    <TableCell align="right">{t('distance')}</TableCell>
+                                                    <TableCell align="right">{t('result')}</TableCell>
                                                 </TableRow>
-                                            ))}
-                                        </TableBody>
-                                    </Table>
-                                </TableContainer> :
+                                            </TableHead>
+                                            <TableBody>
+                                                {rows.map((row) => (
+                                                    <TableRow
+                                                        key={row.raceName}
+                                                        sx={{'&:last-child td, &:last-child th': {border: 0}}}
+                                                    >
+                                                        <TableCell component="th" scope="row">
+                                                            {row.raceName}
+                                                        </TableCell>
+                                                        <TableCell align="right">{row.date}</TableCell>
+                                                        <TableCell align="right">{row.distance}</TableCell>
+                                                        <TableCell align="right">{row.result}</TableCell>
+                                                    </TableRow>
+                                                ))}
+                                            </TableBody>
+                                        </Table>
+                                    </TableContainer> :
                                     <Alert severity='info'>{t('message')}</Alert>}
                             </Grid>
                         </Grid>

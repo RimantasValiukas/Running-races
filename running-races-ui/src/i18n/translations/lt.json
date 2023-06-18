@@ -40,6 +40,7 @@
   },
   "competitors": {
     "title": "Varžybų dalyviai",
+    "raceResults": "Varžybų rezultatai",
     "name": "Vardas, Pavardė",
     "dateOfBirth": "Gimimo data",
     "city": "Miestas",
@@ -167,5 +168,9 @@
     "errorMessage": "Nerandama",
     "noResult": "Rezultato nėra",
     "message" : "Varžybose dar nedalyvavote"
+  },
+  "footer": {
+    "footer": "Bėk su aistra, priimk iššūkį ir leisk savo žingsnių ritmui tave vesti į naujas aukštumas.",
+    "copyright": "Visos teisės saugomos © "
   }
 }

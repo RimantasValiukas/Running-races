@@ -40,6 +40,7 @@
   },
   "competitors": {
     "title": "Race participants",
+    "raceResults": "Race results",
     "name": "Name, Surname",
     "dateOfBirth": "Date of Birth",
     "city": "City",
@@ -165,6 +166,9 @@
     "errorMessage": "Cannot find",
     "noResult": "No result",
     "message": "You have not participated in the race yet"
-
+  },
+  "footer": {
+    "footer": "Run with passion, embrace the challenge, and let the rhythm of your footsteps guide you to new heights.",
+    "copyright": "Copyright © "
   }
 }
