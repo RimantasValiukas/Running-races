@@ -58,7 +58,10 @@ const Header = () => {
     return (
         <AppBar
             position="fixed"
-            sx={{backgroundColor: '#112D4E', borderBottom: (theme) => `1px solid ${theme.palette.divider}`}}
+            sx={{backgroundColor: '#112D4E',
+                width: '100%',
+                boxSizing: 'border-box',
+                borderBottom: (theme) => `1px solid ${theme.palette.divider}`}}
         >
             <Toolbar sx={{flexWrap: 'wrap'}}>
                 <Typography variant="h6" color="inherit" noWrap component={NavLink} to="/"

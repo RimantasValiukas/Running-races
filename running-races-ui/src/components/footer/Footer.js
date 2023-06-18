@@ -26,10 +26,12 @@ const Footer = () => {
                 backgroundColor: '#112D4E',
                 width: '100%',
                 mt: '30px',
-                py: 3
+                py: 3,
+                px: 2,
+                boxSizing: 'border-box'
             }}
         >
-            <Container maxWidth="sm">
+            <Container maxWidth="sx">
                 <Typography variant="h6" align="center" color="#F9F7F7" gutterBottom>
                     RunRaceBook
                 </Typography>

@@ -27,13 +27,23 @@ const Content = () => {
     }
 
     return (
-        <Container maxWidth="xl">
+        <Container disableGutters maxWidth="xl" component="main"
+                   sx={{
+                       display: 'flex',
+                       flexDirection: 'column',
+                       minHeight: 'calc(100vh - 177px)',
+                       px: 2,
+                       width: '100%',
+                       boxSizing: 'border-box'
+                   }}>>
             <Routes>
                 <Route path="/races/create" element={<SecuredRoute roles={['ADMIN']}/>}>
                     <Route path="/races/create" element={<Race key="create"/>}/>
                 </Route>
-                <Route path="/" element={<Races filterFunction={filterUpcomingRaces} key="upcoming" keyProp="upcoming"/>}/>
-                <Route path="/races/previous" element={<Races filterFunction={filterPreviousRaces} key="previous" keyProp="previous"/>}/>
+                <Route path="/"
+                       element={<Races filterFunction={filterUpcomingRaces} key="upcoming" keyProp="upcoming"/>}/>
+                <Route path="/races/previous"
+                       element={<Races filterFunction={filterPreviousRaces} key="previous" keyProp="previous"/>}/>
                 <Route path="/races/:raceId" element={<RaceDetail/>}/>
                 <Route path="/races/:raceId/update" element={<SecuredRoute roles={['ADMIN']}/>}>
                     <Route path="/races/:raceId/update" element={<Race key="update"/>}/>
