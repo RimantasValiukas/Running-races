@@ -31,6 +31,7 @@ const Competitor = () => {
     const [loading, setLoading] = useState(true);
     const {t} = useTranslation('competitor');
     const user = useSelector(store => store.user.user);
+    const [raceName, setRaceName] = useState("");
     const [competitor, setCompetitor] = useState({
         name: '',
         surname: '',
@@ -63,7 +64,10 @@ const Competitor = () => {
         }
 
         getRaceById(raceId)
-            .then(({data}) => setDistances(data.distances))
+            .then(({data}) => {
+                setDistances(data.distances);
+                setRaceName(data.name);
+            })
             .catch((error) => {
                 setMessage({isVisible: true, message: t('cantFind'), severity: 'error'});
                 console.log(error);
@@ -109,7 +113,7 @@ const Competitor = () => {
                             <Form>
                                 <Stack spacing={2} direction="column">
                                     {message.isVisible && <Alert severity={message.severity}>{message.message}</Alert>}
-                                    <Typography variant="h5">{t('titleRegister')}</Typography>
+                                    <Typography variant="h5">{t('titleRegister')} {raceName}</Typography>
                                     <FormInputs error={props.touched.name && !!props.errors.name}
                                                 name="name"
                                                 label={t('name')}/>

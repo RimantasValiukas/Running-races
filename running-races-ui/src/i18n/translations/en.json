@@ -21,7 +21,7 @@
     "results": "Results"
   },
   "competitor": {
-    "titleRegister": "Register for the race",
+    "titleRegister": "Register for the race: ",
     "name": "Name",
     "surname": "Surname",
     "dateOfBirth": "Date of birth",

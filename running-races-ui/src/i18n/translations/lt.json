@@ -21,7 +21,7 @@
     "results": "Rezultatai"
   },
   "competitor": {
-    "titleRegister": "Varžybų registracija",
+    "titleRegister": "Registracija į varžybas: ",
     "name": "Vardas",
     "surname": "Pavardė",
     "dateOfBirth": "Gimimo data",
