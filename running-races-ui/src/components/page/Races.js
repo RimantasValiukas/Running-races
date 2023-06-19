@@ -52,7 +52,6 @@ const Races = (props) => {
             {
                 loading ? <CircularProgress/> :
                     <>
-                        <Typography>
                             <Grid container spacing={4} sx={{mt: '5px'}}>
                                 {races.map((race) => (
                                     <Grid item key={race.name} xs={12} sm={6} md={4}>
@@ -96,7 +95,6 @@ const Races = (props) => {
                                     </Grid>
                                 ))}
                             </Grid>
-                        </Typography>
                     </>
             }
         </>
