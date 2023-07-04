@@ -5,7 +5,6 @@ import {Alert, Button, CircularProgress, Grid, ImageListItem, Paper, styled, Typ
 import Container from "@mui/material/Container";
 import {format, parseISO} from "date-fns";
 import DeleteRace from "../DeleteRace";
-import Competitor from "../forms/Competitor";
 import {useTranslation} from "react-i18next";
 import {useSelector} from "react-redux";
 
@@ -48,17 +47,16 @@ const RaceDetail = () => {
                             </Grid>
                             <Grid item xs={12} md={7}>
                                 <Typography variant="h5" align="center">{race.name}</Typography>
-                                <Typography>
                                     <Grid container spacing={2} sx={{mt: 2, ml: 1}}>
-                                        <Grid item xs={4} sm={3}>{t('organizer')}</Grid>
-                                        <Grid item xs={8} sm={9}>{race.organizer}</Grid>
-                                        <Grid item xs={4} sm={3}>{t('dateTime')}</Grid>
+                                        <Grid item xs={4} sm={3}><Typography>{t('organizer')}</Typography></Grid>
+                                        <Grid item xs={8} sm={9}><Typography>{race.organizer}</Typography></Grid>
+                                        <Grid item xs={4} sm={3}><Typography>{t('dateTime')}</Typography></Grid>
                                         <Grid item xs={8}
-                                              sm={9}>{format(parseISO(race.dateTime), 'yyyy-MM-dd HH:mm')} </Grid>
-                                        <Grid item xs={4} sm={3}>{t('address')}</Grid>
-                                        <Grid item xs={8} sm={9}>{race.address}</Grid>
-                                        <Grid item xs={4} sm={3}>{t('description')}</Grid>
-                                        <Grid item xs={8} sm={9} sx={{textAlign: 'justify'}}>{race.description}</Grid>
+                                              sm={9}><Typography>{format(parseISO(race.dateTime), 'yyyy-MM-dd HH:mm')}</Typography></Grid>
+                                        <Grid item xs={4} sm={3}><Typography>{t('address')}</Typography></Grid>
+                                        <Grid item xs={8} sm={9}><Typography>{race.address}</Typography></Grid>
+                                        <Grid item xs={4} sm={3}><Typography>{t('description')}</Typography></Grid>
+                                        <Grid item xs={8} sm={9} sx={{textAlign: 'justify'}}><Typography>{race.description}</Typography></Grid>
                                         <Grid item xs={12}>
                                             {isRaceDayPassed && <Button size="small"
                                                                         to={`/competitors/${race.id}/create`}
@@ -79,7 +77,6 @@ const RaceDetail = () => {
                                             {user?.roles.includes('ADMIN') && <DeleteRace raceId={raceId}/>}
                                         </Grid>
                                     </Grid>
-                                </Typography>
                             </Grid>
                         </Grid>
                     </Container>
