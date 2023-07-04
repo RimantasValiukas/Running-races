@@ -42,6 +42,8 @@ public class RaceEntity {
     private List<Double> distances;
     @OneToMany(mappedBy = "raceEntity", cascade = CascadeType.ALL)
     private List<CompetitorEntity> competitors;
+    @OneToMany(mappedBy = "raceEntity", cascade = CascadeType.ALL)
+    private List<CompetitorEntity> comments;
 
     public static RaceEntity convert(Race race) {
         return new RaceEntity(
@@ -53,6 +55,7 @@ public class RaceEntity {
                 race.getImageURL(),
                 race.getDateTime(),
                 race.getDistances(),
+                new ArrayList<>(),
                 new ArrayList<>()
         );
     }
