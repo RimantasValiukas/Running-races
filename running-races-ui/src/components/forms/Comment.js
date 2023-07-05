@@ -7,12 +7,14 @@ import {Form, Formik} from "formik";
 import {Button, CircularProgress, Stack, Typography} from "@mui/material";
 import FormInputs from "./FormInputs";
 import {createComment} from "../api/raceApi";
+import {useTranslation} from "react-i18next";
 
 const Comment = () => {
 
     const [loading, setLoading] = useState(true);
     const {raceId} = useParams();
     const user = useSelector(store => store.user.user);
+    const {t} = useTranslation('comment');
     const [comment, setComment] = useState({
         raceId: '',
         userId: '',
@@ -22,7 +24,7 @@ const Comment = () => {
 
     const commentValidationScheme = Yup.object().shape(
         {
-            comment: Yup.string().required('Comment is required').max(1000, 'Maximum comment size 1000 symbols')
+            comment: Yup.string().required(t('validation.required')).max(1000, t('validation.size'))
         }
     );
 
@@ -52,7 +54,7 @@ const Comment = () => {
                     <Stack spacing={2} direction="column">
                         <FormInputs error={props.touched.comment && !!props.errors.comment}
                                     name="comment"
-                                    label={'Add comment here'}
+                                    label={t('label')}
                                     rows={3}
                                     multiline/>
                         <Typography sx={{textAlign: 'right', mt: 2}}>
@@ -62,7 +64,7 @@ const Comment = () => {
                                         variant="outlined"
                                         type="submit"
                                         sx={{color: '#3F72AF'}}>
-                                        Add Comment
+                                        {t('button')}
                                     </Button>
                             }
                         </Typography>

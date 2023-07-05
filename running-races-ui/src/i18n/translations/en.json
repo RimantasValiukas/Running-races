@@ -170,5 +170,13 @@
   "footer": {
     "footer": "Run with passion, embrace the challenge, and let the rhythm of your footsteps guide you to new heights.",
     "copyright": "Copyright © "
+  },
+  "comment": {
+    "label": "Add comment here",
+    "button": "ADD COMMENT",
+    "validation": {
+      "required": "Comment is required",
+      "size": "Maximum comment size is 1000 symbols"
+    }
   }
 }
