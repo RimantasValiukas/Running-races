@@ -22,8 +22,10 @@ public class CommentEntity {
     private UUID commentId;
     @Column(insertable = false, updatable = false)
     private UUID raceId;
-    @Column
+    @Column(nullable = false)
     private UUID userId;
+    @Column(nullable = false)
+    private String userFullName;
     @Column(nullable = false, length = 1000)
     private String comment;
     @Column(nullable = false)
@@ -37,6 +39,7 @@ public class CommentEntity {
                 comment.getCommentId(),
                 comment.getRaceId(),
                 comment.getUserId(),
+                comment.getUserFullName(),
                 comment.getComment(),
                 comment.getDateTime(),
                 null

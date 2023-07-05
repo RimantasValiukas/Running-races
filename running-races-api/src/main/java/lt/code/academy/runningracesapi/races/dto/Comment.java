@@ -17,6 +17,7 @@ public class Comment {
     private UUID commentId;
     private UUID raceId;
     private UUID userId;
+    private String userFullName;
     private String comment;
     private Timestamp dateTime;
 
@@ -25,6 +26,7 @@ public class Comment {
                 entity.getCommentId(),
                 entity.getRaceId(),
                 entity.getUserId(),
+                entity.getUserFullName(),
                 entity.getComment(),
                 entity.getDateTime()
         );
