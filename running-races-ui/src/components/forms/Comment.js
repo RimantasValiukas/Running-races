@@ -18,6 +18,7 @@ const Comment = () => {
     const [comment, setComment] = useState({
         raceId: '',
         userId: '',
+        userFullName: '',
         comment: '',
         dateTime: null
     });
@@ -34,6 +35,7 @@ const Comment = () => {
             ...values,
             raceId: raceId,
             userId: user.userId,
+            userFullName: user.fullName,
             dateTime: currentTime
         };
 
