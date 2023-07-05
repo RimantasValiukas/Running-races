@@ -1,5 +1,6 @@
 import HTTP from "./index";
 import competitor from "../forms/Competitor";
+import comment from "../forms/Comment";
 
 const createRace = (race) => HTTP.post('/races', race);
 const getRaces = () => HTTP.get('/races');
@@ -11,6 +12,7 @@ const getCompetitors = () => HTTP.get('/competitors');
 const getCompetitorsByRaceId = (raceId) => HTTP.get(`/competitors/${raceId}`);
 const getCompetitor = (competitorId) => HTTP.get(`/competitors/${competitorId}/result`);
 const updateCompetitor = (competitor, competitorId) => HTTP.put(`/competitors/${competitorId}`, competitor);
+const createComment = (comment) => HTTP.post('/comments', comment);
 
 export {
     createRace,
@@ -22,5 +24,6 @@ export {
     getCompetitors,
     getCompetitorsByRaceId,
     getCompetitor,
-    updateCompetitor
+    updateCompetitor,
+    createComment
 }

@@ -22,7 +22,7 @@ public class CommentEntity {
     private UUID commentId;
     @Column(insertable = false, updatable = false)
     private UUID raceId;
-    @Column(insertable = false, updatable = false)
+    @Column
     private UUID userId;
     @Column(nullable = false, length = 1000)
     private String comment;
