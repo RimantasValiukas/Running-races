@@ -8,6 +8,7 @@ import DeleteRace from "../DeleteRace";
 import {useTranslation} from "react-i18next";
 import {useSelector} from "react-redux";
 import Comment from "../forms/Comment";
+import Comments from "./Comments";
 
 const Item = styled(Paper)(({theme}) => ({
     ...theme.typography.body2,
@@ -29,7 +30,7 @@ const RaceDetail = () => {
     useEffect(() => {
         getRaceById(raceId)
             .then(({data}) => setRace(data))
-            .catch((error) => setMessage({isVisible: true, message: 'Race cannot be opened', severity: 'error'}))
+            .catch((error) => setMessage({isVisible: true, message: t('errMessage'), severity: 'error'}))
             .finally(() => setLoading(false));
     }, [])
 
@@ -78,11 +79,15 @@ const RaceDetail = () => {
                                                                                   sx={{color: '#3F72AF'}}>{t('edit')}</Button>}
                                         {user?.roles.includes('ADMIN') && <DeleteRace raceId={raceId}/>}
                                     </Grid>
-                                    <Grid item xs={12}>
-                                        {user?.roles.includes('USER') && <Comment/>}
-                                    </Grid>
                                 </Grid>
                             </Grid>
+                            <Grid item xs={2}></Grid>
+                            <Grid item xs={8}>
+                                <Typography variant="h5" align="center" sx={{mb: 3}}>{t('comments')}</Typography>
+                                <Comments/>
+                                {user?.roles.includes('USER') && <Comment/>}
+                            </Grid>
+                            <Grid item xs={2}></Grid>
                         </Grid>
                     </Container>
             }

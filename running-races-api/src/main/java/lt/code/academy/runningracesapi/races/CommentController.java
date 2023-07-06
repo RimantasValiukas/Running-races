@@ -19,7 +19,7 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    @GetMapping(value = "/{raceId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{raceId}/all", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Comment> getComments(@PathVariable UUID raceId) {
         return commentService.getCommentsByRaceId(raceId);
     }

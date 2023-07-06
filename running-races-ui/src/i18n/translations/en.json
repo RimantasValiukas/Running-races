@@ -18,7 +18,9 @@
     "titleConfirm": "Confirm Delete",
     "deleteConfirmation": "Are you sure you want to delete this race?",
     "cancel": "Cancel",
-    "results": "Results"
+    "results": "Results",
+    "comments": "Comments",
+    "errMessage": "Race cannot be opened"
   },
   "competitor": {
     "titleRegister": "Register for the race: ",
@@ -174,6 +176,7 @@
   "comment": {
     "label": "Add comment here",
     "button": "ADD COMMENT",
+    "noComments": "There are no comments yet",
     "validation": {
       "required": "Comment is required",
       "size": "Maximum comment size is 1000 symbols"

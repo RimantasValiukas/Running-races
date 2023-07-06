@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
 import * as Yup from 'yup';
 import store from "../../store/store";
@@ -53,7 +53,7 @@ const Comment = () => {
             validationSchema={commentValidationScheme}>
             {props => (
                 <Form>
-                    <Stack spacing={2} direction="column">
+                    <Stack spacing={2} direction="column" sx={{mt: 2}}>
                         <FormInputs error={props.touched.comment && !!props.errors.comment}
                                     name="comment"
                                     label={t('label')}

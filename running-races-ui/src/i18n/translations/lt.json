@@ -18,7 +18,9 @@
     "titleConfirm": "Patvirtinkite ištrynimą",
     "deleteConfirmation": "Ar tikrai norite ištrinti šias varžybas?",
     "cancel": "Atšaukti",
-    "results": "Rezultatai"
+    "results": "Rezultatai",
+    "comments": "Komentarai",
+    "errMessage": "Varžybos neatsidaro"
   },
   "competitor": {
     "titleRegister": "Registracija į varžybas: ",
@@ -176,6 +178,7 @@
   "comment": {
     "label": "Parašykite komentarą",
     "button": "KOMENTUOTI",
+    "noComments": "Komentarų dar nėra",
     "validation": {
       "required": "Laukelis negali būti tuščias",
       "size": "Maksimalus komentaro ilgis yra 1000 simbolių"
