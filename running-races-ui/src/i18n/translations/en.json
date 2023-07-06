@@ -177,6 +177,7 @@
     "label": "Add comment here",
     "button": "ADD COMMENT",
     "noComments": "There are no comments yet",
+    "delete": "Delete",
     "validation": {
       "required": "Comment is required",
       "size": "Maximum comment size is 1000 symbols"

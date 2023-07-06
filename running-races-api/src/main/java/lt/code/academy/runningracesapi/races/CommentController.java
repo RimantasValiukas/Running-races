@@ -37,7 +37,7 @@ public class CommentController {
     }
 
     @PreAuthorize("hasRole('USER')")
-    @DeleteMapping(value = "/{commentId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/{commentId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteComment(@PathVariable UUID commentId) {
         commentService.deleteComment(commentId);

@@ -32,6 +32,8 @@ public class SecurityConfig {
                 .permitAll()
                 .requestMatchers(HttpMethod.POST, "/competitors", "/users", "/comments")
                 .permitAll()
+                .requestMatchers(HttpMethod.DELETE, "/comments/**")
+                .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

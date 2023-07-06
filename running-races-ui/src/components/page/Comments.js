@@ -1,9 +1,10 @@
-import {Alert, Grid, Paper, Typography} from "@mui/material";
+import {Alert, Button, Grid, Paper, Typography} from "@mui/material";
 import {useEffect, useState} from "react";
-import {getComments} from "../api/raceApi";
-import {useParams} from "react-router-dom";
+import {deleteComment, getComments} from "../api/raceApi";
+import {NavLink, useParams} from "react-router-dom";
 import {format, parseISO} from "date-fns";
 import {useTranslation} from "react-i18next";
+import {useSelector} from "react-redux";
 
 const Comments = () => {
     const [comments, setComments] = useState([]);
@@ -11,6 +12,7 @@ const Comments = () => {
     const [message, setMessage] = useState({isVisible: false});
     const {raceId} = useParams();
     const {t} = useTranslation('comment');
+    const user = useSelector(state => state.user.user);
 
     useEffect(() => {
         getComments(raceId)
@@ -24,6 +26,12 @@ const Comments = () => {
             .catch((error) => console.log('error', error))
             .finally(() => setLoading(false))
     }, [comments]);
+
+    const onDelete = (commentId) => {
+        deleteComment(commentId)
+            .then()
+            .catch((error) => console.log('error', error))
+    }
 
 
     return (
@@ -41,6 +49,13 @@ const Comments = () => {
                                 <Typography variant="body1" sx={{mt: 1, textAlign: 'justify'}}>
                                     {comment.comment}
                                 </Typography>
+                                {((user?.userId === comment.userId) || user?.roles.includes('ADMIN')) && <Grid item xs={12}>
+                                    <Button size="small"
+                                            color='warning'
+                                            onClick={() => onDelete(comment.commentId)}>
+                                        {t('delete')}
+                                    </Button>
+                                </Grid>}
                             </Paper>
                         </Grid>
                     )))
