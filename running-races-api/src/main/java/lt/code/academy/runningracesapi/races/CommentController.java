@@ -43,4 +43,12 @@ public class CommentController {
         commentService.deleteComment(commentId);
     }
 
+    @PreAuthorize("hasRole('USER')")
+    @PutMapping(value = "/{commentId}/update")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void updateComment(@RequestBody Comment comment, @PathVariable UUID commentId) {
+        comment.setCommentId(commentId);
+        commentService.createComment(comment);
+    }
+
 }

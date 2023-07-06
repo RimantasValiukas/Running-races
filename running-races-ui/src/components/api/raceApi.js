@@ -15,6 +15,8 @@ const updateCompetitor = (competitor, competitorId) => HTTP.put(`/competitors/${
 const createComment = (comment) => HTTP.post('/comments', comment);
 const getComments = (raceId) => HTTP.get(`/comments/${raceId}/all`);
 const deleteComment = (commentId) => HTTP.delete(`/comments/${commentId}`);
+const updateComment = (comment, commentId) => HTTP.put(`/comments/${commentId}/update`, comment);
+const getCommentById = (commentId) => HTTP.get(`/comments/${commentId}`);
 
 export {
     createRace,
@@ -29,5 +31,7 @@ export {
     updateCompetitor,
     createComment,
     getComments,
-    deleteComment
+    deleteComment,
+    updateComment,
+    getCommentById
 }

@@ -11,6 +11,7 @@ import UserRegistration from "../forms/UserRegistration";
 import SecuredRoute from "../security/SecuredRoute";
 import Result from "../forms/Result";
 import UserDetail from "../page/UserDetail";
+import Comment from "../forms/Comment";
 
 const Content = () => {
 
@@ -59,6 +60,7 @@ const Content = () => {
                 <Route path="/user/:userId" element={<SecuredRoute roles={['USER']}/>}>
                     <Route path="/user/:userId" element={<UserDetail/>}/>
                 </Route>
+                <Route path="/races/:raceId/:commentId" element={<Comment/>}/>
             </Routes>
         </Container>
     );

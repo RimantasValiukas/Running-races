@@ -177,9 +177,11 @@
   },
   "comment": {
     "label": "Parašykite komentarą",
-    "button": "KOMENTUOTI",
+    "buttonCreate": "KOMENTUOTI",
+    "buttonEdit": "PAKEISTI",
     "noComments": "Komentarų dar nėra",
     "delete": "Trinti",
+    "edit": "Keisti",
     "validation": {
       "required": "Laukelis negali būti tuščias",
       "size": "Maksimalus komentaro ilgis yra 1000 simbolių"

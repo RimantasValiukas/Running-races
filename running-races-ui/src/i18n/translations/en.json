@@ -175,9 +175,11 @@
   },
   "comment": {
     "label": "Add comment here",
-    "button": "ADD COMMENT",
+    "buttonCreate": "ADD COMMENT",
+    "buttonEdit": "EDIT",
     "noComments": "There are no comments yet",
     "delete": "Delete",
+    "edit": "Edit",
     "validation": {
       "required": "Comment is required",
       "size": "Maximum comment size is 1000 symbols"
